@@ -1,6 +1,6 @@
 <img src=https://raw.githubusercontent.com/amitshekhariitbhu/Learn-Kotlin-Coroutines/main/assets/learn-kotlin-coroutines.png >
 
-# Learn-Kotlin-Coroutines - Learn Kotlin Coroutines for Android by Examples
+# Learn Kotlin Coroutines by real examples for Android
 
 ## About this project:
 
@@ -143,7 +143,7 @@ Now we have understood what exactly Coroutines are.
 * Learn all the concepts of Kotlin Coroutines from
   this **[blog](https://blog.mindorks.com/mastering-kotlin-coroutines-in-android-step-by-step-guide)**
 * Learn about the Dispatchers
-  from [here](https://amitshekhar.me/blog/dispatchers-in-kotlin-coroutines)
+  from **[here](https://amitshekhar.me/blog/dispatchers-in-kotlin-coroutines)**
 * Then, just clone, build, run the project and start learning Kotlin Coroutines by examples.
 
 ## You will learn the following from this Learn Kotlin Coroutines project:
@@ -162,7 +162,7 @@ Now we have understood what exactly Coroutines are.
 * Adding timeout to a task using Kotlin Coroutines.
 * Writing Unit-Test for ViewModel which uses Kotlin Coroutines.
 
-## Kotlin Coroutines Examples for Android Development:
+## Kotlin Coroutines Examples for Android Development: Activity and ViewModel
 
 * **Single Network Call:** Learn how to make a network call using Kotlin Coroutines. This is a very
   simple use-case in Android App Development.
