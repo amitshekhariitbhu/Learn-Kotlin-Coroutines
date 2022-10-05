@@ -25,16 +25,16 @@ class TimeoutViewModel(
 
     private fun fetchUsers() {
         viewModelScope.launch {
-            users.postValue(Resource.loading(null))
+            users.postValue(Resource.loading())
             try {
                 withTimeout(100) {
                     val usersFromApi = apiHelper.getUsers()
                     users.postValue(Resource.success(usersFromApi))
                 }
             } catch (e: TimeoutCancellationException) {
-                users.postValue(Resource.error("TimeoutCancellationException", null))
+                users.postValue(Resource.error("TimeoutCancellationException"))
             } catch (e: Exception) {
-                users.postValue(Resource.error("Something Went Wrong", null))
+                users.postValue(Resource.error("Something Went Wrong"))
             }
         }
     }

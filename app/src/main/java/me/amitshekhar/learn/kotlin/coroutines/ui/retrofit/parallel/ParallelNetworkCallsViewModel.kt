@@ -25,7 +25,7 @@ class ParallelNetworkCallsViewModel(
 
     private fun fetchUsers() {
         viewModelScope.launch {
-            users.postValue(Resource.loading(null))
+            users.postValue(Resource.loading())
             try {
                 // coroutineScope is needed, else in case of any network error, it will crash
                 coroutineScope {
@@ -42,7 +42,7 @@ class ParallelNetworkCallsViewModel(
                     users.postValue(Resource.success(allUsersFromApi))
                 }
             } catch (e: Exception) {
-                users.postValue(Resource.error("Something Went Wrong", null))
+                users.postValue(Resource.error("Something Went Wrong"))
             }
         }
     }

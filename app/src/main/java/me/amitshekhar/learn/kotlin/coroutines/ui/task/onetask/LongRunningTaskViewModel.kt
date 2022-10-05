@@ -21,13 +21,13 @@ class LongRunningTaskViewModel(
 
     fun startLongRunningTask() {
         viewModelScope.launch {
-            status.postValue(Resource.loading(null))
+            status.postValue(Resource.loading())
             try {
                 // do a long running task
                 doLongRunningTask()
                 status.postValue(Resource.success("Task Completed"))
             } catch (e: Exception) {
-                status.postValue(Resource.error("Something Went Wrong", null))
+                status.postValue(Resource.error("Something Went Wrong"))
             }
         }
     }

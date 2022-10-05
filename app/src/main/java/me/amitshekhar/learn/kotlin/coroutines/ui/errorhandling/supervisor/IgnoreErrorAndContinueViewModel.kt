@@ -25,7 +25,7 @@ class IgnoreErrorAndContinueViewModel(
 
     private fun fetchUsers() {
         viewModelScope.launch {
-            users.postValue(Resource.loading(null))
+            users.postValue(Resource.loading())
             try {
                 // supervisorScope is needed, so that we can ignore error and continue
                 // here, more than two child jobs are running in parallel under a supervisor, one child job gets failed, we can continue with other.
@@ -52,7 +52,7 @@ class IgnoreErrorAndContinueViewModel(
                     users.postValue(Resource.success(allUsersFromApi))
                 }
             } catch (e: Exception) {
-                users.postValue(Resource.error("Something Went Wrong", null))
+                users.postValue(Resource.error("Something Went Wrong"))
             }
         }
     }

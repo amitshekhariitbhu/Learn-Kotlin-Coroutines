@@ -23,12 +23,12 @@ class SingleNetworkCallViewModel(
 
     private fun fetchUsers() {
         viewModelScope.launch {
-            users.postValue(Resource.loading(null))
+            users.postValue(Resource.loading())
             try {
                 val usersFromApi = apiHelper.getUsers()
                 users.postValue(Resource.success(usersFromApi))
             } catch (e: Exception) {
-                users.postValue(Resource.error(e.toString(), null))
+                users.postValue(Resource.error(e.toString()))
             }
         }
     }

@@ -21,7 +21,7 @@ class RoomDBViewModel(private val apiHelper: ApiHelper, private val dbHelper: Da
 
     private fun fetchUsers() {
         viewModelScope.launch {
-            users.postValue(Resource.loading(null))
+            users.postValue(Resource.loading())
             try {
                 val usersFromDb = dbHelper.getUsers()
                 if (usersFromDb.isEmpty()) {
@@ -48,7 +48,7 @@ class RoomDBViewModel(private val apiHelper: ApiHelper, private val dbHelper: Da
 
 
             } catch (e: Exception) {
-                users.postValue(Resource.error("Something Went Wrong", null))
+                users.postValue(Resource.error("Something Went Wrong"))
             }
         }
     }

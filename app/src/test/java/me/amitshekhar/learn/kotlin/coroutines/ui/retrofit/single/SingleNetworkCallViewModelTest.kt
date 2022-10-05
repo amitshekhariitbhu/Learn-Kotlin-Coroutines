@@ -67,10 +67,7 @@ class SingleNetworkCallViewModelTest {
             viewModel.getUsers().observeForever(apiUsersObserver)
             verify(apiHelper).getUsers()
             verify(apiUsersObserver).onChanged(
-                Resource.error(
-                    RuntimeException(errorMessage).toString(),
-                    null
-                )
+                Resource.error(RuntimeException(errorMessage).toString())
             )
             viewModel.getUsers().removeObserver(apiUsersObserver)
         }

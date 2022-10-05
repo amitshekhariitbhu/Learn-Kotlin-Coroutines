@@ -23,7 +23,7 @@ class SeriesNetworkCallsViewModel(
 
     private fun fetchUsers() {
         viewModelScope.launch {
-            users.postValue(Resource.loading(null))
+            users.postValue(Resource.loading())
             try {
                 val usersFromApi = apiHelper.getUsers()
                 val moreUsersFromApi = apiHelper.getMoreUsers()
@@ -32,7 +32,7 @@ class SeriesNetworkCallsViewModel(
                 allUsersFromApi.addAll(moreUsersFromApi)
                 users.postValue(Resource.success(allUsersFromApi))
             } catch (e: Exception) {
-                users.postValue(Resource.error("Something Went Wrong", null))
+                users.postValue(Resource.error("Something Went Wrong"))
             }
         }
     }

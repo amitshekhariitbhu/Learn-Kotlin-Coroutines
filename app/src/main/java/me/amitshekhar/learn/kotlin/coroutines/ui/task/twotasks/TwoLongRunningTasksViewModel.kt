@@ -20,7 +20,7 @@ class TwoLongRunningTasksViewModel(
 
     fun startLongRunningTask() {
         viewModelScope.launch {
-            status.postValue(Resource.loading(null))
+            status.postValue(Resource.loading())
             try {
                 // do long running tasks
                 val resultOneDeferred = async { doLongRunningTaskOne() }
@@ -29,7 +29,7 @@ class TwoLongRunningTasksViewModel(
 
                 status.postValue(Resource.success("Task Completed : $combinedResult"))
             } catch (e: Exception) {
-                status.postValue(Resource.error("Something Went Wrong", null))
+                status.postValue(Resource.error("Something Went Wrong"))
             }
         }
     }
