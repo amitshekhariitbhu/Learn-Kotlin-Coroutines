@@ -144,6 +144,8 @@ Now we have understood what exactly Coroutines are.
   this **[blog](https://blog.mindorks.com/mastering-kotlin-coroutines-in-android-step-by-step-guide)**
 * Learn about the Dispatchers
   from **[here](https://amitshekhar.me/blog/dispatchers-in-kotlin-coroutines)**
+* Learn about the `coroutineScope` vs `supervisorScope`
+  from **[here](https://amitshekhar.me/blog/coroutinescope-vs-supervisorscope)**
 * Then, just clone, build, run the project and start learning Kotlin Coroutines by examples.
 
 ## You will learn the following from this Learn Kotlin Coroutines project:
@@ -209,9 +211,10 @@ Now we have understood what exactly Coroutines are.
     * [Activity Code](app/src/main/java/me/amitshekhar/learn/kotlin/coroutines/ui/errorhandling/exceptionhandler/ExceptionHandlerActivity.kt)
     * [ViewModel Code](app/src/main/java/me/amitshekhar/learn/kotlin/coroutines/ui/errorhandling/exceptionhandler/ExceptionHandlerViewModel.kt)
 
-* **Ignore Error And Continue:** Learn how to use `supervisorScope` to ignore error of a task and
-  continue with other task. In other words, if more than two child jobs are running in parallel
-  under a supervisor, one child job gets failed, we can continue with other.
+* **Ignore Error And Continue:** Learn how to
+  use [`supervisorScope`](https://amitshekhar.me/blog/coroutinescope-vs-supervisorscope) to ignore
+  error of a task and continue with other task. In other words, if more than two child jobs are
+  running in parallel under a supervisor, one child job gets failed, we can continue with other.
     * [Activity Code](app/src/main/java/me/amitshekhar/learn/kotlin/coroutines/ui/errorhandling/supervisor/IgnoreErrorAndContinueActivity.kt)
     * [ViewModel Code](app/src/main/java/me/amitshekhar/learn/kotlin/coroutines/ui/errorhandling/supervisor/IgnoreErrorAndContinueViewModel.kt)
 
