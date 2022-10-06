@@ -146,6 +146,10 @@ Now we have understood what exactly Coroutines are.
   from **[here](https://amitshekhar.me/blog/dispatchers-in-kotlin-coroutines)**
 * Learn about the `coroutineScope` vs `supervisorScope`
   from **[here](https://amitshekhar.me/blog/coroutinescope-vs-supervisorscope)**
+*
+
+Blog: [Retrofit with Kotlin Coroutines](https://amitshekhar.me/blog/retrofit-with-kotlin-coroutines)
+
 * Then, just clone, build, run the project and start learning Kotlin Coroutines by examples.
 
 ## You will learn the following from this Learn Kotlin Coroutines project:
@@ -159,6 +163,7 @@ Now we have understood what exactly Coroutines are.
 * Canceling background task using Kotlin Coroutines.
 * Exception handling in Kotlin Coroutines.
 * Using Kotlin Coroutines with Retrofit.
+  Blog: [Retrofit with Kotlin Coroutines](https://amitshekhar.me/blog/retrofit-with-kotlin-coroutines)
 * Using Kotlin Coroutines with Room Database.
 * Using Kotlin Coroutines with various 3rd party libraries.
 * Adding timeout to a task using Kotlin Coroutines.
@@ -168,6 +173,7 @@ Now we have understood what exactly Coroutines are.
 
 * **Single Network Call:** Learn how to make a network call using Kotlin Coroutines. This is a very
   simple use-case in Android App Development.
+  Blog: [Retrofit with Kotlin Coroutines](https://amitshekhar.me/blog/retrofit-with-kotlin-coroutines)
     * [Activity Code](app/src/main/java/me/amitshekhar/learn/kotlin/coroutines/ui/retrofit/single/SingleNetworkCallActivity.kt)
     * [ViewModel Code](app/src/main/java/me/amitshekhar/learn/kotlin/coroutines/ui/retrofit/single/SingleNetworkCallViewModel.kt)
 
