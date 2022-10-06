@@ -146,9 +146,7 @@ Now we have understood what exactly Coroutines are.
   from **[here](https://amitshekhar.me/blog/dispatchers-in-kotlin-coroutines)**
 * Learn about the `coroutineScope` vs `supervisorScope`
   from **[here](https://amitshekhar.me/blog/coroutinescope-vs-supervisorscope)**
-* Blog
-  on  [Retrofit with Kotlin Coroutines](https://amitshekhar.me/blog/retrofit-with-kotlin-coroutines)
-
+* Blog [Retrofit with Kotlin Coroutines](https://amitshekhar.me/blog/retrofit-with-kotlin-coroutines)
 * Then, just clone, build, run the project and start learning Kotlin Coroutines by examples.
 
 ## You will learn the following from this Learn Kotlin Coroutines project:
