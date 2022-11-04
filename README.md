@@ -7,6 +7,15 @@
 * This project is for someone who wants to get started with Kotlin Coroutines.
 * I have tried to add the examples we implement in our Android project frequently.
 
+## Steps to learn Kotlin Coroutines from this project
+
+* Learn all the concepts of Kotlin Coroutines from this blog: **[Mastering Kotlin Coroutines](https://amitshekhar.me/blog/kotlin-coroutines)**
+* Learn about the Dispatchers from here: **[Dispatchers in Kotlin Coroutines](https://amitshekhar.me/blog/dispatchers-in-kotlin-coroutines)**
+* Learn about the `coroutineScope` vs `supervisorScope` from here: **[coroutinescope vs supervisorscope](https://amitshekhar.me/blog/coroutinescope-vs-supervisorscope)**
+* Blog [Callback to Coroutines in Kotlin](https://amitshekhar.me/blog/callback-to-coroutines-in-kotlin)  
+* Blog [Retrofit with Kotlin Coroutines](https://amitshekhar.me/blog/retrofit-with-kotlin-coroutines)
+* Then, just clone, build, run the project and start learning Kotlin Coroutines by examples.
+
 ## You will learn the following from this Learn Kotlin Coroutines project:
 
 * Step by step guide on how to implement the Kotlin Coroutines in Android.
