@@ -12,8 +12,13 @@
 * Learn all the concepts of Kotlin Coroutines from this blog: **[Mastering Kotlin Coroutines](https://amitshekhar.me/blog/kotlin-coroutines)**
 * Learn about the Dispatchers from here: **[Dispatchers in Kotlin Coroutines](https://amitshekhar.me/blog/dispatchers-in-kotlin-coroutines)**
 * Learn about the `coroutineScope` vs `supervisorScope` from here: **[coroutinescope vs supervisorscope](https://amitshekhar.me/blog/coroutinescope-vs-supervisorscope)**
+* Blog [suspend function in Kotlin Coroutines](https://amitshekhar.me/blog/suspend-function-in-kotlin-coroutines)
+* Blog [Kotlin withContext vs Async-await](https://amitshekhar.me/blog/kotlin-withcontext-vs-async-await)
 * Blog [Callback to Coroutines in Kotlin](https://amitshekhar.me/blog/callback-to-coroutines-in-kotlin)  
 * Blog [Retrofit with Kotlin Coroutines](https://amitshekhar.me/blog/retrofit-with-kotlin-coroutines)
+* Blog [Parallel Multiple Network Calls Using Kotlin Coroutines](https://amitshekhar.me/blog/parallel-multiple-network-calls-using-kotlin-coroutines)
+* Blog [Room Database with Kotlin Coroutines](https://amitshekhar.me/blog/room-database-with-kotlin-coroutines)
+* Blog [Unit Testing ViewModel with Kotlin Coroutines and LiveData](https://amitshekhar.me/blog/unit-testing-viewmodel-with-kotlin-coroutines-and-livedata)
 * Then, just clone, build, run the project and start learning Kotlin Coroutines by examples.
 
 ## You will learn the following from this Learn Kotlin Coroutines project:
