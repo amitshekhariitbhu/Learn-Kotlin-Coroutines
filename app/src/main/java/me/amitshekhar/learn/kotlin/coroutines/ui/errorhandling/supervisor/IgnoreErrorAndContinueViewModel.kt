@@ -26,33 +26,29 @@ class IgnoreErrorAndContinueViewModel(
     private fun fetchUsers() {
         viewModelScope.launch {
             users.postValue(Resource.loading())
-            try {
-                // supervisorScope is needed, so that we can ignore error and continue
-                // here, more than two child jobs are running in parallel under a supervisor, one child job gets failed, we can continue with other.
-                supervisorScope {
-                    val usersFromApiDeferred = async { apiHelper.getUsersWithError() }
-                    val moreUsersFromApiDeferred = async { apiHelper.getMoreUsers() }
+            // supervisorScope is needed, so that we can ignore error and continue
+            // here, more than two child jobs are running in parallel under a supervisor, one child job gets failed, we can continue with other.
+            supervisorScope {
+                val usersFromApiDeferred = async { apiHelper.getUsersWithError() }
+                val moreUsersFromApiDeferred = async { apiHelper.getMoreUsers() }
 
-                    val usersFromApi = try {
-                        usersFromApiDeferred.await()
-                    } catch (e: Exception) {
-                        emptyList()
-                    }
-
-                    val moreUsersFromApi = try {
-                        moreUsersFromApiDeferred.await()
-                    } catch (e: Exception) {
-                        emptyList()
-                    }
-
-                    val allUsersFromApi = mutableListOf<ApiUser>()
-                    allUsersFromApi.addAll(usersFromApi)
-                    allUsersFromApi.addAll(moreUsersFromApi)
-
-                    users.postValue(Resource.success(allUsersFromApi))
+                val usersFromApi = try {
+                    usersFromApiDeferred.await()
+                } catch (e: Exception) {
+                    emptyList()
                 }
-            } catch (e: Exception) {
-                users.postValue(Resource.error("Something Went Wrong"))
+
+                val moreUsersFromApi = try {
+                    moreUsersFromApiDeferred.await()
+                } catch (e: Exception) {
+                    emptyList()
+                }
+
+                val allUsersFromApi = mutableListOf<ApiUser>()
+                allUsersFromApi.addAll(usersFromApi)
+                allUsersFromApi.addAll(moreUsersFromApi)
+
+                users.postValue(Resource.success(allUsersFromApi))
             }
         }
     }
