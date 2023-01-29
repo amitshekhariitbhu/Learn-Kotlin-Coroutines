@@ -113,4 +113,81 @@ class BasicActivity : AppCompatActivity() {
         }
     }
 
+    private fun learnLaunch() {
+        lifecycleScope.launch {
+            // do something
+        }
+    }
+
+    private fun learnLaunchWithJob() {
+        val job = lifecycleScope.launch {
+            // do something
+        }
+    }
+
+    private suspend fun learnAsync() {
+        val deferredJob = lifecycleScope.async {
+            // do something
+            return@async 10
+        }
+        val result = deferredJob.await()
+    }
+
+    private suspend fun asyncWithReturn(): Int {
+        return lifecycleScope.async(Dispatchers.Default) {
+            // do something
+            return@async 10
+        }.await()
+    }
+
+    private suspend fun withContextWithReturn(): Int {
+        return withContext(Dispatchers.Default) {
+            // do something
+            return@withContext 10
+        }
+    }
+
+    private fun twoJobs() {
+        Log.d(TAG, "Function Start")
+
+        val job = lifecycleScope.launch(Dispatchers.Main) {
+            Log.d(TAG, "Before Task 1")
+            doLongRunningTask()
+            Log.d(TAG, "After Task 1")
+        }
+
+        lifecycleScope.launch(Dispatchers.Main) {
+            Log.d(TAG, "Before Task 2")
+            job.cancel()
+            doLongRunningTask()
+            Log.d(TAG, "After Task 2")
+        }
+
+        Log.d(TAG, "Function End")
+    }
+
+    private fun parentAndChildTaskWithCancel() {
+        Log.d(TAG, "Function Start")
+
+        lifecycleScope.launch(Dispatchers.Main) {
+            Log.d(TAG, "Before Task")
+            childTask(coroutineContext[Job]!!)
+            Log.d(TAG, "After Task")
+        }
+
+        Log.d(TAG, "Function End")
+    }
+
+    private suspend fun childTask(parent: Job) {
+        withContext(Dispatchers.Default) {
+            Log.d(TAG, "childTask start")
+            parent.cancel()
+            Log.d(TAG, "childTask parent cancel")
+            // your code for doing a long running task
+            // Added delay to simulate
+            delay(2000)
+            Log.d(TAG, "childTask end")
+        }
+    }
+
 }
