@@ -10,6 +10,8 @@ import me.amitshekhar.learn.kotlin.coroutines.R
 
 class BasicActivity : AppCompatActivity() {
 
+    private val myActivityScope = CoroutineScope(Job() + Dispatchers.Main)
+
     companion object {
         private const val TAG = "BasicActivity"
     }
@@ -17,6 +19,11 @@ class BasicActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_basic)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        myActivityScope.cancel()
     }
 
     fun testCoroutine(view: View) {
