@@ -121,23 +121,23 @@ class BasicActivity : AppCompatActivity() {
     }
 
     private fun learnLaunch() {
-        lifecycleScope.launch {
+        lifecycleScope.launch(Dispatchers.Default) {
             // do something
         }
     }
 
     private fun learnLaunchWithJob() {
-        val job = lifecycleScope.launch {
+        val job = lifecycleScope.launch(Dispatchers.Default) {
             // do something
         }
     }
 
     private suspend fun learnAsync() {
-        val deferredJob = lifecycleScope.async {
+        val deferred = lifecycleScope.async(Dispatchers.Default) {
             // do something
             return@async 10
         }
-        val result = deferredJob.await()
+        val result = deferred.await()
     }
 
     private suspend fun asyncWithReturn(): Int {
@@ -145,6 +145,13 @@ class BasicActivity : AppCompatActivity() {
             // do something
             return@async 10
         }.await()
+    }
+
+    private suspend fun learnWithContext() {
+        val result = withContext(Dispatchers.Default) {
+            // do something
+            return@withContext 10
+        }
     }
 
     private suspend fun withContextWithReturn(): Int {
