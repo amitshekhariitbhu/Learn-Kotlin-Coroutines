@@ -190,4 +190,18 @@ class BasicActivity : AppCompatActivity() {
         }
     }
 
+    private suspend fun childTaskWithIsActive(parent: Job) {
+        withContext(Dispatchers.Default) {
+            Log.d(TAG, "childTask start")
+            parent.cancel()
+            if (isActive) {
+                Log.d(TAG, "childTask parent cancel")
+            }
+            // your code for doing a long running task
+            // Added delay to simulate
+            delay(2000)
+            Log.d(TAG, "childTask end")
+        }
+    }
+
 }
