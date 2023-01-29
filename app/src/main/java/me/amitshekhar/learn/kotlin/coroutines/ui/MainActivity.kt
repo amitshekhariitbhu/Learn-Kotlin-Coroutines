@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import me.amitshekhar.learn.kotlin.coroutines.R
+import me.amitshekhar.learn.kotlin.coroutines.ui.basic.BasicActivity
 import me.amitshekhar.learn.kotlin.coroutines.ui.errorhandling.exceptionhandler.ExceptionHandlerActivity
 import me.amitshekhar.learn.kotlin.coroutines.ui.errorhandling.supervisor.IgnoreErrorAndContinueActivity
 import me.amitshekhar.learn.kotlin.coroutines.ui.errorhandling.trycatch.TryCatchActivity
@@ -61,6 +62,10 @@ class MainActivity : AppCompatActivity() {
 
     fun startTwoLongRunningTasksActivity(view: View) {
         startActivity(Intent(this@MainActivity, TwoLongRunningTasksActivity::class.java))
+    }
+
+    fun startBasicActivity(view: View) {
+        startActivity(Intent(this@MainActivity, BasicActivity::class.java))
     }
 
 }

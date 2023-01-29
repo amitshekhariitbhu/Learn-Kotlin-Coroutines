@@ -4,7 +4,7 @@
     package="me.amitshekhar.learn.kotlin.coroutines">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -54,6 +54,11 @@
         <activity
             android:name=".ui.task.twotasks.TwoLongRunningTasksActivity"
             android:label="@string/two_long_running_tasks" />
+
+        <activity
+            android:name=".ui.basic.BasicActivity"
+            android:label="@string/basic" />
+
     </application>
 
 </manifest>
