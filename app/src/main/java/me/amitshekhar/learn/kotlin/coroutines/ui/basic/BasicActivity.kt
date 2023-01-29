@@ -10,7 +10,7 @@ import me.amitshekhar.learn.kotlin.coroutines.R
 
 class BasicActivity : AppCompatActivity() {
 
-    private val myActivityScope = CoroutineScope(Job() + Dispatchers.Main)
+    private val myActivityScope = CoroutineScope(Dispatchers.Main)
 
     companion object {
         private const val TAG = "BasicActivity"
