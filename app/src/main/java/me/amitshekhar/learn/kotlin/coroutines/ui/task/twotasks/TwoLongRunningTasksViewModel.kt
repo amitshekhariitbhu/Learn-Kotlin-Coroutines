@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -12,8 +13,7 @@ import me.amitshekhar.learn.kotlin.coroutines.data.local.DatabaseHelper
 import me.amitshekhar.learn.kotlin.coroutines.utils.Resource
 
 class TwoLongRunningTasksViewModel(
-    private val apiHelper: ApiHelper,
-    private val dbHelper: DatabaseHelper
+    private val apiHelper: ApiHelper, private val dbHelper: DatabaseHelper
 ) : ViewModel() {
 
     private val status = MutableLiveData<Resource<String>>()
@@ -23,8 +23,8 @@ class TwoLongRunningTasksViewModel(
             status.postValue(Resource.loading())
             try {
                 // do long running tasks
-                val resultOneDeferred = async { doLongRunningTaskOne() }
-                val resultTwoDeferred = async { doLongRunningTaskTwo() }
+                val resultOneDeferred = async(Dispatchers.IO) { doLongRunningTaskOne() }
+                val resultTwoDeferred = async(Dispatchers.IO) { doLongRunningTaskTwo() }
                 val combinedResult = resultOneDeferred.await() + resultTwoDeferred.await()
 
                 status.postValue(Resource.success("Task Completed : $combinedResult"))
