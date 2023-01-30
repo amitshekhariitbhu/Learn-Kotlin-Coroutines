@@ -55,5 +55,37 @@
             android:textAllCaps="false"
             android:textColor="@android:color/black" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="usingMyActivityScope"
+            android:text="usingMyActivityScope"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="twoTasks"
+            android:text="twoTasks"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="parentAndChildTaskCancel"
+            android:text="parentAndChildTaskCancel"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="parentAndChildTaskCancelIsActive"
+            android:text="parentAndChildTaskCancelIsActive"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black" />
+
     </LinearLayout>
 </ScrollView>

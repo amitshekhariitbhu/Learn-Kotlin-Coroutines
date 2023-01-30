@@ -46,6 +46,22 @@ class BasicActivity : AppCompatActivity() {
         usingGlobalScope()
     }
 
+    fun usingMyActivityScope(view: View) {
+        usingMyActivityScope()
+    }
+
+    fun twoTasks(view: View) {
+        twoTasks()
+    }
+
+    fun parentAndChildTaskCancel(view: View) {
+        parentAndChildTaskCancel()
+    }
+
+    fun parentAndChildTaskCancelIsActive(view: View) {
+        parentAndChildTaskCancelIsActive()
+    }
+
     private fun testCoroutine() {
         Log.d(TAG, "Function Start")
 
@@ -112,11 +128,90 @@ class BasicActivity : AppCompatActivity() {
         Log.d(TAG, "Function End")
     }
 
+    private fun usingMyActivityScope() {
+        Log.d(TAG, "Function Start")
+        myActivityScope.launch {
+            Log.d(TAG, "Before Task")
+            doLongRunningTask()
+            Log.d(TAG, "After Task")
+        }
+        Log.d(TAG, "Function End")
+    }
+
     private suspend fun doLongRunningTask() {
         withContext(Dispatchers.Default) {
             // your code for doing a long running task
             // Added delay to simulate
             delay(2000)
+        }
+    }
+
+    private fun twoTasks() {
+        Log.d(TAG, "Function Start")
+
+        val job = lifecycleScope.launch(Dispatchers.Main) {
+            Log.d(TAG, "Before Task 1")
+            doLongRunningTask()
+            Log.d(TAG, "After Task 1")
+        }
+
+        lifecycleScope.launch(Dispatchers.Main) {
+            Log.d(TAG, "Before Task 2")
+            job.cancel()
+            doLongRunningTask()
+            Log.d(TAG, "After Task 2")
+        }
+
+        Log.d(TAG, "Function End")
+    }
+
+    private fun parentAndChildTaskCancel() {
+        Log.d(TAG, "Function Start")
+
+        lifecycleScope.launch(Dispatchers.Main) {
+            Log.d(TAG, "Before Task")
+            childTask(coroutineContext[Job]!!)
+            Log.d(TAG, "After Task")
+        }
+
+        Log.d(TAG, "Function End")
+    }
+
+    private suspend fun childTask(parent: Job) {
+        withContext(Dispatchers.Default) {
+            Log.d(TAG, "childTask start")
+            parent.cancel()
+            Log.d(TAG, "childTask parent cancel")
+            // your code for doing a long running task
+            // Added delay to simulate
+            delay(2000)
+            Log.d(TAG, "childTask end")
+        }
+    }
+
+    private fun parentAndChildTaskCancelIsActive() {
+        Log.d(TAG, "Function Start")
+
+        lifecycleScope.launch(Dispatchers.Main) {
+            Log.d(TAG, "Before Task")
+            childTaskWithIsActive(coroutineContext[Job]!!)
+            Log.d(TAG, "After Task")
+        }
+
+        Log.d(TAG, "Function End")
+    }
+
+    private suspend fun childTaskWithIsActive(parent: Job) {
+        withContext(Dispatchers.Default) {
+            Log.d(TAG, "childTask start")
+            parent.cancel()
+            if (isActive) {
+                Log.d(TAG, "childTask parent cancel")
+            }
+            // your code for doing a long running task
+            // Added delay to simulate
+            delay(2000)
+            Log.d(TAG, "childTask end")
         }
     }
 
@@ -158,63 +253,6 @@ class BasicActivity : AppCompatActivity() {
         return withContext(Dispatchers.Default) {
             // do something
             return@withContext 10
-        }
-    }
-
-    private fun twoJobs() {
-        Log.d(TAG, "Function Start")
-
-        val job = lifecycleScope.launch(Dispatchers.Main) {
-            Log.d(TAG, "Before Task 1")
-            doLongRunningTask()
-            Log.d(TAG, "After Task 1")
-        }
-
-        lifecycleScope.launch(Dispatchers.Main) {
-            Log.d(TAG, "Before Task 2")
-            job.cancel()
-            doLongRunningTask()
-            Log.d(TAG, "After Task 2")
-        }
-
-        Log.d(TAG, "Function End")
-    }
-
-    private fun parentAndChildTaskWithCancel() {
-        Log.d(TAG, "Function Start")
-
-        lifecycleScope.launch(Dispatchers.Main) {
-            Log.d(TAG, "Before Task")
-            childTask(coroutineContext[Job]!!)
-            Log.d(TAG, "After Task")
-        }
-
-        Log.d(TAG, "Function End")
-    }
-
-    private suspend fun childTask(parent: Job) {
-        withContext(Dispatchers.Default) {
-            Log.d(TAG, "childTask start")
-            parent.cancel()
-            Log.d(TAG, "childTask parent cancel")
-            // your code for doing a long running task
-            // Added delay to simulate
-            delay(2000)
-            Log.d(TAG, "childTask end")
-        }
-    }
-
-    private suspend fun childTaskWithIsActive(parent: Job) {
-        withContext(Dispatchers.Default) {
-            Log.d(TAG, "childTask start")
-            parent.cancel()
-            if (isActive) {
-                Log.d(TAG, "childTask parent cancel")
-            }
-            // your code for doing a long running task
-            // Added delay to simulate
-            delay(2000)
-            Log.d(TAG, "childTask end")
         }
     }
 
