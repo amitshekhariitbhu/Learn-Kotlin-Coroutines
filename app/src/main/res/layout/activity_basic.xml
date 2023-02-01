@@ -87,5 +87,37 @@
             android:textAllCaps="false"
             android:textColor="@android:color/black" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="lifecycleScopeWithHandlerException"
+            android:text="lifecycleScopeWithHandlerException"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="lifecycleScopeWithHandler"
+            android:text="lifecycleScopeWithHandler"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="myActivityScopeWithHandlerException"
+            android:text="myActivityScopeWithHandlerException"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="myActivityScopeWithHandler"
+            android:text="myActivityScopeWithHandler"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black" />
+
     </LinearLayout>
 </ScrollView>

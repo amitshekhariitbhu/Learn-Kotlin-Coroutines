@@ -62,6 +62,22 @@ class BasicActivity : AppCompatActivity() {
         parentAndChildTaskCancelIsActive()
     }
 
+    fun lifecycleScopeWithHandlerException(view: View) {
+        lifecycleScopeWithHandlerException()
+    }
+
+    fun lifecycleScopeWithHandler(view: View) {
+        lifecycleScopeWithHandler()
+    }
+
+    fun myActivityScopeWithHandlerException(view: View) {
+        myActivityScopeWithHandlerException()
+    }
+
+    fun myActivityScopeWithHandler(view: View) {
+        myActivityScopeWithHandler()
+    }
+
     private fun testCoroutine() {
         Log.d(TAG, "Function Start")
 
@@ -213,6 +229,52 @@ class BasicActivity : AppCompatActivity() {
             delay(2000)
             Log.d(TAG, "childTask end")
         }
+    }
+
+    private val exceptionHandler = CoroutineExceptionHandler { _, e ->
+        Log.d(TAG, "exception handler: $e")
+    }
+
+    private fun lifecycleScopeWithHandlerException() {
+        Log.d(TAG, "Function Start")
+        lifecycleScope.launch(exceptionHandler) {
+            Log.d(TAG, "Before Task")
+            doLongRunningTask()
+            throw Exception("Some Error")
+            Log.d(TAG, "After Task")
+        }
+        Log.d(TAG, "Function End")
+    }
+
+    private fun lifecycleScopeWithHandler() {
+        Log.d(TAG, "Function Start")
+        lifecycleScope.launch(exceptionHandler) {
+            Log.d(TAG, "Before Task")
+            doLongRunningTask()
+            Log.d(TAG, "After Task")
+        }
+        Log.d(TAG, "Function End")
+    }
+
+    private fun myActivityScopeWithHandlerException() {
+        Log.d(TAG, "Function Start")
+        myActivityScope.launch(exceptionHandler) {
+            Log.d(TAG, "Before Task")
+            doLongRunningTask()
+            throw Exception("Some Error")
+            Log.d(TAG, "After Task")
+        }
+        Log.d(TAG, "Function End")
+    }
+
+    private fun myActivityScopeWithHandler() {
+        Log.d(TAG, "Function Start")
+        myActivityScope.launch(exceptionHandler) {
+            Log.d(TAG, "Before Task")
+            doLongRunningTask()
+            Log.d(TAG, "After Task")
+        }
+        Log.d(TAG, "Function End")
     }
 
     private fun learnLaunch() {
