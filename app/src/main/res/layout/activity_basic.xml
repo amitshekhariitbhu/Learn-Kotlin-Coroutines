@@ -21,7 +21,7 @@
             android:onClick="testCoroutine"
             android:text="testCoroutine"
             android:textAllCaps="false"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/white" />
 
         <Button
             android:layout_width="match_parent"
@@ -29,7 +29,7 @@
             android:onClick="testCoroutineWithMain"
             android:text="testCoroutineWithMain"
             android:textAllCaps="false"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/white" />
 
         <Button
             android:layout_width="match_parent"
@@ -37,7 +37,7 @@
             android:onClick="testCoroutineWithMainImmediate"
             android:text="testCoroutineWithMainImmediate"
             android:textAllCaps="false"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/white" />
 
         <Button
             android:layout_width="match_parent"
@@ -45,7 +45,7 @@
             android:onClick="testCoroutineEverything"
             android:text="testCoroutineEverything"
             android:textAllCaps="false"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/white" />
 
         <Button
             android:layout_width="match_parent"
@@ -53,7 +53,7 @@
             android:onClick="usingGlobalScope"
             android:text="usingGlobalScope"
             android:textAllCaps="false"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/white" />
 
         <Button
             android:layout_width="match_parent"
@@ -61,7 +61,47 @@
             android:onClick="usingMyActivityScope"
             android:text="usingMyActivityScope"
             android:textAllCaps="false"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="globalScopeInsideLifecycleScope"
+            android:text="globalScopeInsideLifecycleScope"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="launchInsideLifecycleScope"
+            android:text="launchInsideLifecycleScope"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="twoLaunchInsideLifecycleScope"
+            android:text="twoLaunchInsideLifecycleScope"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="twoAsyncInsideLifecycleScope"
+            android:text="twoAsyncInsideLifecycleScope"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="twoWithContextInsideLifecycleScope"
+            android:text="twoWithContextInsideLifecycleScope"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
 
         <Button
             android:layout_width="match_parent"
@@ -69,7 +109,7 @@
             android:onClick="twoTasks"
             android:text="twoTasks"
             android:textAllCaps="false"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/white" />
 
         <Button
             android:layout_width="match_parent"
@@ -77,7 +117,7 @@
             android:onClick="parentAndChildTaskCancel"
             android:text="parentAndChildTaskCancel"
             android:textAllCaps="false"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/white" />
 
         <Button
             android:layout_width="match_parent"
@@ -85,7 +125,7 @@
             android:onClick="parentAndChildTaskCancelIsActive"
             android:text="parentAndChildTaskCancelIsActive"
             android:textAllCaps="false"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/white" />
 
         <Button
             android:layout_width="match_parent"
@@ -93,7 +133,7 @@
             android:onClick="lifecycleScopeWithHandlerException"
             android:text="lifecycleScopeWithHandlerException"
             android:textAllCaps="false"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/white" />
 
         <Button
             android:layout_width="match_parent"
@@ -101,7 +141,7 @@
             android:onClick="lifecycleScopeWithHandler"
             android:text="lifecycleScopeWithHandler"
             android:textAllCaps="false"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/white" />
 
         <Button
             android:layout_width="match_parent"
@@ -109,7 +149,7 @@
             android:onClick="myActivityScopeWithHandlerException"
             android:text="myActivityScopeWithHandlerException"
             android:textAllCaps="false"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/white" />
 
         <Button
             android:layout_width="match_parent"
@@ -117,7 +157,7 @@
             android:onClick="myActivityScopeWithHandler"
             android:text="myActivityScopeWithHandler"
             android:textAllCaps="false"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 </ScrollView>

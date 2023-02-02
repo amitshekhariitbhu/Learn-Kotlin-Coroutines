@@ -10,7 +10,7 @@ import me.amitshekhar.learn.kotlin.coroutines.R
 
 class BasicActivity : AppCompatActivity() {
 
-    private val myActivityScope = CoroutineScope(Dispatchers.Main)
+    private val myActivityScope = CoroutineScope(Dispatchers.Main.immediate)
 
     companion object {
         private const val TAG = "BasicActivity"
@@ -44,6 +44,26 @@ class BasicActivity : AppCompatActivity() {
 
     fun usingGlobalScope(view: View) {
         usingGlobalScope()
+    }
+
+    fun globalScopeInsideLifecycleScope(view: View) {
+        globalScopeInsideLifecycleScope()
+    }
+
+    fun launchInsideLifecycleScope(view: View) {
+        launchInsideLifecycleScope()
+    }
+
+    fun twoLaunchInsideLifecycleScope(view: View) {
+        twoLaunchInsideLifecycleScope()
+    }
+
+    fun twoAsyncInsideLifecycleScope(view: View) {
+        twoAsyncInsideLifecycleScope()
+    }
+
+    fun twoWithContextInsideLifecycleScope(view: View) {
+        twoWithContextInsideLifecycleScope()
     }
 
     fun usingMyActivityScope(view: View) {
@@ -158,8 +178,104 @@ class BasicActivity : AppCompatActivity() {
         withContext(Dispatchers.Default) {
             // your code for doing a long running task
             // Added delay to simulate
+            Log.d(TAG, "Before Delay")
             delay(2000)
+            Log.d(TAG, "After Delay")
         }
+    }
+
+    private fun globalScopeInsideLifecycleScope() {
+        Log.d(TAG, "Function Start")
+        lifecycleScope.launch {
+            Log.d(TAG, "Before Task")
+            GlobalScope.launch(Dispatchers.Default) {
+                Log.d(TAG, "Before Delay")
+                delay(2000)
+                Log.d(TAG, "After Delay")
+            }
+            Log.d(TAG, "After Task")
+        }
+        Log.d(TAG, "Function End")
+    }
+
+    private fun launchInsideLifecycleScope() {
+        Log.d(TAG, "Function Start")
+        lifecycleScope.launch {
+            Log.d(TAG, "Before Task")
+            launch(Dispatchers.Default) {
+                Log.d(TAG, "Before Delay")
+                delay(2000)
+                Log.d(TAG, "After Delay")
+            }
+            Log.d(TAG, "After Task")
+        }
+        Log.d(TAG, "Function End")
+    }
+
+    private fun twoLaunchInsideLifecycleScope() {
+        Log.d(TAG, "Function Start")
+        lifecycleScope.launch {
+            Log.d(TAG, "Before Task")
+            launch(Dispatchers.Default) {
+                Log.d(TAG, "Before Delay 1")
+                delay(2000)
+                Log.d(TAG, "After Delay 1")
+            }
+            launch(Dispatchers.Default) {
+                Log.d(TAG, "Before Delay 2")
+                delay(2000)
+                Log.d(TAG, "After Delay 2")
+            }
+            Log.d(TAG, "After Task")
+        }
+        Log.d(TAG, "Function End")
+    }
+
+    private fun twoAsyncInsideLifecycleScope() {
+        Log.d(TAG, "Function Start")
+        lifecycleScope.launch {
+            Log.d(TAG, "Before Task")
+
+            val deferredOne = async(Dispatchers.Default) {
+                Log.d(TAG, "Before Delay 1")
+                delay(2000)
+                Log.d(TAG, "After Delay 1")
+                return@async 5
+            }
+
+            val deferredTwo = async(Dispatchers.Default) {
+                Log.d(TAG, "Before Delay 2")
+                delay(2000)
+                Log.d(TAG, "After Delay 2")
+                return@async 5
+            }
+
+            val result = deferredOne.await() + deferredTwo.await()
+
+            Log.d(TAG, "result : $result")
+
+            Log.d(TAG, "After Task")
+        }
+        Log.d(TAG, "Function End")
+    }
+
+    private fun twoWithContextInsideLifecycleScope() {
+        Log.d(TAG, "Function Start")
+        lifecycleScope.launch {
+            Log.d(TAG, "Before Task")
+            withContext(Dispatchers.Default) {
+                Log.d(TAG, "Before Delay 1")
+                delay(2000)
+                Log.d(TAG, "After Delay 1")
+            }
+            withContext(Dispatchers.Default) {
+                Log.d(TAG, "Before Delay 2")
+                delay(2000)
+                Log.d(TAG, "After Delay 2")
+            }
+            Log.d(TAG, "After Task")
+        }
+        Log.d(TAG, "Function End")
     }
 
     private fun twoTasks() {
