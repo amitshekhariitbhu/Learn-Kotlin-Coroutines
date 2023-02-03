@@ -82,16 +82,8 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="twoLaunchInsideLifecycleScope"
-            android:text="twoLaunchInsideLifecycleScope"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="twoAsyncInsideLifecycleScope"
-            android:text="twoAsyncInsideLifecycleScope"
+            android:onClick="twoLaunches"
+            android:text="twoLaunches"
             android:textAllCaps="false"
             android:textColor="@android:color/white" />
 
@@ -100,6 +92,14 @@
             android:layout_height="wrap_content"
             android:onClick="twoWithContextInsideLifecycleScope"
             android:text="twoWithContextInsideLifecycleScope"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="twoAsyncInsideLifecycleScope"
+            android:text="twoAsyncInsideLifecycleScope"
             android:textAllCaps="false"
             android:textColor="@android:color/white" />
 
