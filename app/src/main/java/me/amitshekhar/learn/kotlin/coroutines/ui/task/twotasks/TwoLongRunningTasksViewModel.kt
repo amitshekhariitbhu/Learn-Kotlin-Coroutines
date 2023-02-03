@@ -4,10 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import me.amitshekhar.learn.kotlin.coroutines.data.api.ApiHelper
 import me.amitshekhar.learn.kotlin.coroutines.data.local.DatabaseHelper
 import me.amitshekhar.learn.kotlin.coroutines.utils.Resource
@@ -23,8 +20,8 @@ class TwoLongRunningTasksViewModel(
             status.postValue(Resource.loading())
             try {
                 // do long running tasks
-                val resultOneDeferred = async(Dispatchers.IO) { doLongRunningTaskOne() }
-                val resultTwoDeferred = async(Dispatchers.IO) { doLongRunningTaskTwo() }
+                val resultOneDeferred = async { doLongRunningTaskOne() }
+                val resultTwoDeferred = async { doLongRunningTaskTwo() }
                 val combinedResult = resultOneDeferred.await() + resultTwoDeferred.await()
 
                 status.postValue(Resource.success("Task Completed : $combinedResult"))
@@ -38,14 +35,22 @@ class TwoLongRunningTasksViewModel(
         return status
     }
 
-    private suspend fun doLongRunningTaskOne(): String {
-        delay(5000)
-        return "One"
+    private suspend fun doLongRunningTaskOne(): Int {
+        return withContext(Dispatchers.Default) {
+            // your code for doing a long running task
+            // Added delay to simulate
+            delay(2000)
+            return@withContext 10
+        }
     }
 
-    private suspend fun doLongRunningTaskTwo(): String {
-        delay(5000)
-        return "Two"
+    private suspend fun doLongRunningTaskTwo(): Int {
+        return withContext(Dispatchers.Default) {
+            // your code for doing a long running task
+            // Added delay to simulate
+            delay(2000)
+            return@withContext 10
+        }
     }
 
 }
