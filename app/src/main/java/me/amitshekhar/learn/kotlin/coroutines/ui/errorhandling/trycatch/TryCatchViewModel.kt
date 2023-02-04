@@ -27,6 +27,7 @@ class TryCatchViewModel(
             try {
                 val usersFromApi = apiHelper.getUsers()
                 users.postValue(Resource.success(usersFromApi))
+                throw Exception("Exception Occurs")
             } catch (e: Exception) {
                 users.postValue(Resource.error("Something Went Wrong"))
             }
