@@ -100,7 +100,8 @@ class BasicActivity : AppCompatActivity() {
 
     private fun testCoroutine() {
         Log.d(TAG, "Function Start")
-
+        /*If the context does not have any dispatcher nor any other ContinuationInterceptor,
+         then Dispatchers.Default is used*/
         lifecycleScope.launch {
             Log.d(TAG, "Before Task")
             doLongRunningTask()

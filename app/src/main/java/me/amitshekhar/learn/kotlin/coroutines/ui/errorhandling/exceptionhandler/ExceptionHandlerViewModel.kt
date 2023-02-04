@@ -12,14 +12,13 @@ import me.amitshekhar.learn.kotlin.coroutines.data.model.ApiUser
 import me.amitshekhar.learn.kotlin.coroutines.utils.Resource
 
 class ExceptionHandlerViewModel(
-    private val apiHelper: ApiHelper,
-    private val dbHelper: DatabaseHelper
+    private val apiHelper: ApiHelper, private val dbHelper: DatabaseHelper
 ) : ViewModel() {
 
     private val users = MutableLiveData<Resource<List<ApiUser>>>()
 
-    private val exceptionHandler = CoroutineExceptionHandler { _, _ ->
-        users.postValue(Resource.error("Something Went Wrong"))
+    private val exceptionHandler = CoroutineExceptionHandler { _, e ->
+        users.postValue(Resource.error("exception handler: $e"))
     }
 
     init {
@@ -31,6 +30,7 @@ class ExceptionHandlerViewModel(
             users.postValue(Resource.loading())
             val usersFromApi = apiHelper.getUsers()
             users.postValue(Resource.success(usersFromApi))
+            throw Exception("Exception Occurs")
         }
     }
 

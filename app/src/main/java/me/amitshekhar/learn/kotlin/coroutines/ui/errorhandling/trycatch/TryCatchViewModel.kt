@@ -11,8 +11,7 @@ import me.amitshekhar.learn.kotlin.coroutines.data.model.ApiUser
 import me.amitshekhar.learn.kotlin.coroutines.utils.Resource
 
 class TryCatchViewModel(
-    private val apiHelper: ApiHelper,
-    private val dbHelper: DatabaseHelper
+    private val apiHelper: ApiHelper, private val dbHelper: DatabaseHelper
 ) : ViewModel() {
 
     private val users = MutableLiveData<Resource<List<ApiUser>>>()
@@ -27,6 +26,7 @@ class TryCatchViewModel(
             try {
                 val usersFromApi = apiHelper.getUsers()
                 users.postValue(Resource.success(usersFromApi))
+                throw Exception("Exception Occurs")
             } catch (e: Exception) {
                 users.postValue(Resource.error("Something Went Wrong"))
             }
