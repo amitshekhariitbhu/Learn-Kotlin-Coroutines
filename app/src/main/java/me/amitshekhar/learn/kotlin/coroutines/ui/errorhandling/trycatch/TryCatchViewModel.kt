@@ -11,8 +11,7 @@ import me.amitshekhar.learn.kotlin.coroutines.data.model.ApiUser
 import me.amitshekhar.learn.kotlin.coroutines.utils.Resource
 
 class TryCatchViewModel(
-    private val apiHelper: ApiHelper,
-    private val dbHelper: DatabaseHelper
+    private val apiHelper: ApiHelper, private val dbHelper: DatabaseHelper
 ) : ViewModel() {
 
     private val users = MutableLiveData<Resource<List<ApiUser>>>()
