@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 import me.amitshekhar.learn.kotlin.coroutines.data.api.ApiHelper
 import me.amitshekhar.learn.kotlin.coroutines.data.local.DatabaseHelper
 import me.amitshekhar.learn.kotlin.coroutines.data.model.ApiUser
-import me.amitshekhar.learn.kotlin.coroutines.utils.UiState
+import me.amitshekhar.learn.kotlin.coroutines.ui.base.UiState
 
 class SeriesNetworkCallsViewModel(
     private val apiHelper: ApiHelper,

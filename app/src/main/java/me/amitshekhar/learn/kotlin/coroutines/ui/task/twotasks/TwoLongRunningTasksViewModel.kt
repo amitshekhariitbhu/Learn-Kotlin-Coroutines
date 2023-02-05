@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.*
 import me.amitshekhar.learn.kotlin.coroutines.data.api.ApiHelper
 import me.amitshekhar.learn.kotlin.coroutines.data.local.DatabaseHelper
-import me.amitshekhar.learn.kotlin.coroutines.utils.UiState
+import me.amitshekhar.learn.kotlin.coroutines.ui.base.UiState
 
 class TwoLongRunningTasksViewModel(
     private val apiHelper: ApiHelper, private val dbHelper: DatabaseHelper

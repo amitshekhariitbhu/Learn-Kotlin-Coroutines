@@ -1,4 +1,4 @@
-package me.amitshekhar.learn.kotlin.coroutines.utils
+package me.amitshekhar.learn.kotlin.coroutines.ui.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

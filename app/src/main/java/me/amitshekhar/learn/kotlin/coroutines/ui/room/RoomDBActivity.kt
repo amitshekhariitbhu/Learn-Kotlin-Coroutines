@@ -15,8 +15,8 @@ import me.amitshekhar.learn.kotlin.coroutines.data.local.DatabaseBuilder
 import me.amitshekhar.learn.kotlin.coroutines.data.local.DatabaseHelperImpl
 import me.amitshekhar.learn.kotlin.coroutines.data.local.entity.User
 import me.amitshekhar.learn.kotlin.coroutines.ui.base.UserAdapter
-import me.amitshekhar.learn.kotlin.coroutines.utils.UiState
-import me.amitshekhar.learn.kotlin.coroutines.utils.ViewModelFactory
+import me.amitshekhar.learn.kotlin.coroutines.ui.base.UiState
+import me.amitshekhar.learn.kotlin.coroutines.ui.base.ViewModelFactory
 
 class RoomDBActivity : AppCompatActivity() {
 

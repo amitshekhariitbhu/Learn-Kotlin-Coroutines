@@ -6,7 +6,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import me.amitshekhar.learn.kotlin.coroutines.data.api.ApiHelper
 import me.amitshekhar.learn.kotlin.coroutines.data.local.DatabaseHelper
 import me.amitshekhar.learn.kotlin.coroutines.data.model.ApiUser
-import me.amitshekhar.learn.kotlin.coroutines.utils.UiState
+import me.amitshekhar.learn.kotlin.coroutines.ui.base.UiState
 import me.amitshekhar.learn.kotlin.coroutines.utils.TestCoroutineRule
 import org.junit.After
 import org.junit.Before

@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 import me.amitshekhar.learn.kotlin.coroutines.data.api.ApiHelper
 import me.amitshekhar.learn.kotlin.coroutines.data.local.DatabaseHelper
 import me.amitshekhar.learn.kotlin.coroutines.data.model.ApiUser
-import me.amitshekhar.learn.kotlin.coroutines.utils.UiState
+import me.amitshekhar.learn.kotlin.coroutines.ui.base.UiState
 
 class ExceptionHandlerViewModel(
     private val apiHelper: ApiHelper, private val dbHelper: DatabaseHelper
