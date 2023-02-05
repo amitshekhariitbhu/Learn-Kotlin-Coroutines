@@ -17,7 +17,7 @@ class IgnoreErrorAndContinueViewModel(
     private val dbHelper: DatabaseHelper
 ) : ViewModel() {
 
-    private val users = MutableLiveData<UiState<List<ApiUser>>>()
+    private val uiState = MutableLiveData<UiState<List<ApiUser>>>()
 
     init {
         fetchUsers()
@@ -25,7 +25,7 @@ class IgnoreErrorAndContinueViewModel(
 
     private fun fetchUsers() {
         viewModelScope.launch {
-            users.postValue(UiState.Loading)
+            uiState.postValue(UiState.Loading)
             // supervisorScope is needed, so that we can ignore error and continue
             // here, more than two child jobs are running in parallel under a supervisor, one child job gets failed, we can continue with other.
             supervisorScope {
@@ -48,13 +48,13 @@ class IgnoreErrorAndContinueViewModel(
                 allUsersFromApi.addAll(usersFromApi)
                 allUsersFromApi.addAll(moreUsersFromApi)
 
-                users.postValue(UiState.Success(allUsersFromApi))
+                uiState.postValue(UiState.Success(allUsersFromApi))
             }
         }
     }
 
-    fun getUsers(): LiveData<UiState<List<ApiUser>>> {
-        return users
+    fun getUiState(): LiveData<UiState<List<ApiUser>>> {
+        return uiState
     }
 
 }

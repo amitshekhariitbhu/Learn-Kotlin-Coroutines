@@ -16,23 +16,23 @@ class LongRunningTaskViewModel(
     private val apiHelper: ApiHelper, private val dbHelper: DatabaseHelper
 ) : ViewModel() {
 
-    private val status = MutableLiveData<UiState<String>>()
+    private val uiState = MutableLiveData<UiState<String>>()
 
     fun startLongRunningTask() {
         viewModelScope.launch {
-            status.postValue(UiState.Loading)
+            uiState.postValue(UiState.Loading)
             try {
                 // do a long running task
                 doLongRunningTask()
-                status.postValue(UiState.Success("Task Completed"))
+                uiState.postValue(UiState.Success("Task Completed"))
             } catch (e: Exception) {
-                status.postValue(UiState.Error("Something Went Wrong"))
+                uiState.postValue(UiState.Error("Something Went Wrong"))
             }
         }
     }
 
-    fun getStatus(): LiveData<UiState<String>> {
-        return status
+    fun getUiState(): LiveData<UiState<String>> {
+        return uiState
     }
 
     private suspend fun doLongRunningTask() {

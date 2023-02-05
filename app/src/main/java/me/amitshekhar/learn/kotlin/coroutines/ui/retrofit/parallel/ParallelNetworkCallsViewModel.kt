@@ -17,7 +17,7 @@ class ParallelNetworkCallsViewModel(
     private val dbHelper: DatabaseHelper
 ) : ViewModel() {
 
-    private val users = MutableLiveData<UiState<List<ApiUser>>>()
+    private val uiState = MutableLiveData<UiState<List<ApiUser>>>()
 
     init {
         fetchUsers()
@@ -25,7 +25,7 @@ class ParallelNetworkCallsViewModel(
 
     private fun fetchUsers() {
         viewModelScope.launch {
-            users.postValue(UiState.Loading)
+            uiState.postValue(UiState.Loading)
             try {
                 // coroutineScope is needed, else in case of any network error, it will crash
                 coroutineScope {
@@ -39,16 +39,16 @@ class ParallelNetworkCallsViewModel(
                     allUsersFromApi.addAll(usersFromApi)
                     allUsersFromApi.addAll(moreUsersFromApi)
 
-                    users.postValue(UiState.Success(allUsersFromApi))
+                    uiState.postValue(UiState.Success(allUsersFromApi))
                 }
             } catch (e: Exception) {
-                users.postValue(UiState.Error("Something Went Wrong"))
+                uiState.postValue(UiState.Error("Something Went Wrong"))
             }
         }
     }
 
-    fun getUsers(): LiveData<UiState<List<ApiUser>>> {
-        return users
+    fun getUiState(): LiveData<UiState<List<ApiUser>>> {
+        return uiState
     }
 
 }

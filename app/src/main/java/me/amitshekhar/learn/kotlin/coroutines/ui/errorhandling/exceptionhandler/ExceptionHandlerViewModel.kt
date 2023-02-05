@@ -15,10 +15,10 @@ class ExceptionHandlerViewModel(
     private val apiHelper: ApiHelper, private val dbHelper: DatabaseHelper
 ) : ViewModel() {
 
-    private val users = MutableLiveData<UiState<List<ApiUser>>>()
+    private val uiState = MutableLiveData<UiState<List<ApiUser>>>()
 
     private val exceptionHandler = CoroutineExceptionHandler { _, e ->
-        users.postValue(UiState.Error("exception handler: $e"))
+        uiState.postValue(UiState.Error("exception handler: $e"))
     }
 
     init {
@@ -27,14 +27,14 @@ class ExceptionHandlerViewModel(
 
     private fun fetchUsers() {
         viewModelScope.launch(exceptionHandler) {
-            users.postValue(UiState.Loading)
+            uiState.postValue(UiState.Loading)
             val usersFromApi = apiHelper.getUsersWithError()
-            users.postValue(UiState.Success(usersFromApi))
+            uiState.postValue(UiState.Success(usersFromApi))
         }
     }
 
-    fun getUsers(): LiveData<UiState<List<ApiUser>>> {
-        return users
+    fun getUiState(): LiveData<UiState<List<ApiUser>>> {
+        return uiState
     }
 
 }

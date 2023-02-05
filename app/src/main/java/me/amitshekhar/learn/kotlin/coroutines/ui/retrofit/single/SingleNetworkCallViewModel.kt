@@ -15,7 +15,7 @@ class SingleNetworkCallViewModel(
     private val dbHelper: DatabaseHelper
 ) : ViewModel() {
 
-    private val users = MutableLiveData<UiState<List<ApiUser>>>()
+    private val uiState = MutableLiveData<UiState<List<ApiUser>>>()
 
     init {
         fetchUsers()
@@ -23,18 +23,18 @@ class SingleNetworkCallViewModel(
 
     private fun fetchUsers() {
         viewModelScope.launch {
-            users.postValue(UiState.Loading)
+            uiState.postValue(UiState.Loading)
             try {
                 val usersFromApi = apiHelper.getUsers()
-                users.postValue(UiState.Success(usersFromApi))
+                uiState.postValue(UiState.Success(usersFromApi))
             } catch (e: Exception) {
-                users.postValue(UiState.Error(e.toString()))
+                uiState.postValue(UiState.Error(e.toString()))
             }
         }
     }
 
-    fun getUsers(): LiveData<UiState<List<ApiUser>>> {
-        return users
+    fun getUiState(): LiveData<UiState<List<ApiUser>>> {
+        return uiState
     }
 
 }

@@ -13,7 +13,7 @@ import me.amitshekhar.learn.kotlin.coroutines.ui.base.UiState
 class RoomDBViewModel(private val apiHelper: ApiHelper, private val dbHelper: DatabaseHelper) :
     ViewModel() {
 
-    private val users = MutableLiveData<UiState<List<User>>>()
+    private val uiState = MutableLiveData<UiState<List<User>>>()
 
     init {
         fetchUsers()
@@ -21,7 +21,7 @@ class RoomDBViewModel(private val apiHelper: ApiHelper, private val dbHelper: Da
 
     private fun fetchUsers() {
         viewModelScope.launch {
-            users.postValue(UiState.Loading)
+            uiState.postValue(UiState.Loading)
             try {
                 val usersFromDb = dbHelper.getUsers()
                 if (usersFromDb.isEmpty()) {
@@ -40,21 +40,21 @@ class RoomDBViewModel(private val apiHelper: ApiHelper, private val dbHelper: Da
 
                     dbHelper.insertAll(usersToInsertInDB)
 
-                    users.postValue(UiState.Success(usersToInsertInDB))
+                    uiState.postValue(UiState.Success(usersToInsertInDB))
 
                 } else {
-                    users.postValue(UiState.Success(usersFromDb))
+                    uiState.postValue(UiState.Success(usersFromDb))
                 }
 
 
             } catch (e: Exception) {
-                users.postValue(UiState.Error("Something Went Wrong"))
+                uiState.postValue(UiState.Error("Something Went Wrong"))
             }
         }
     }
 
-    fun getUsers(): LiveData<UiState<List<User>>> {
-        return users
+    fun getUiState(): LiveData<UiState<List<User>>> {
+        return uiState
     }
 
 }

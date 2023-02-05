@@ -35,7 +35,7 @@ class SingleNetworkCallViewModelTest {
     private lateinit var databaseHelper: DatabaseHelper
 
     @Mock
-    private lateinit var apiUsersObserver: Observer<UiState<List<ApiUser>>>
+    private lateinit var uiStateObserver: Observer<UiState<List<ApiUser>>>
 
     @Before
     fun setUp() {
@@ -49,10 +49,10 @@ class SingleNetworkCallViewModelTest {
                 .`when`(apiHelper)
                 .getUsers()
             val viewModel = SingleNetworkCallViewModel(apiHelper, databaseHelper)
-            viewModel.getUsers().observeForever(apiUsersObserver)
+            viewModel.getUiState().observeForever(uiStateObserver)
             verify(apiHelper).getUsers()
-            verify(apiUsersObserver).onChanged(UiState.Success(emptyList()))
-            viewModel.getUsers().removeObserver(apiUsersObserver)
+            verify(uiStateObserver).onChanged(UiState.Success(emptyList()))
+            viewModel.getUiState().removeObserver(uiStateObserver)
         }
     }
 
@@ -64,12 +64,12 @@ class SingleNetworkCallViewModelTest {
                 .`when`(apiHelper)
                 .getUsers()
             val viewModel = SingleNetworkCallViewModel(apiHelper, databaseHelper)
-            viewModel.getUsers().observeForever(apiUsersObserver)
+            viewModel.getUiState().observeForever(uiStateObserver)
             verify(apiHelper).getUsers()
-            verify(apiUsersObserver).onChanged(
+            verify(uiStateObserver).onChanged(
                 UiState.Error(RuntimeException(errorMessage).toString())
             )
-            viewModel.getUsers().removeObserver(apiUsersObserver)
+            viewModel.getUiState().removeObserver(uiStateObserver)
         }
     }
 

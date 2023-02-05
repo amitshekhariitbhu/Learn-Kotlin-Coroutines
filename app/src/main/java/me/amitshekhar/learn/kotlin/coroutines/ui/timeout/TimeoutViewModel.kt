@@ -17,7 +17,7 @@ class TimeoutViewModel(
     private val dbHelper: DatabaseHelper
 ) : ViewModel() {
 
-    private val users = MutableLiveData<UiState<List<ApiUser>>>()
+    private val uiState = MutableLiveData<UiState<List<ApiUser>>>()
 
     init {
         fetchUsers()
@@ -25,22 +25,22 @@ class TimeoutViewModel(
 
     private fun fetchUsers() {
         viewModelScope.launch {
-            users.postValue(UiState.Loading)
+            uiState.postValue(UiState.Loading)
             try {
                 withTimeout(100) {
                     val usersFromApi = apiHelper.getUsers()
-                    users.postValue(UiState.Success(usersFromApi))
+                    uiState.postValue(UiState.Success(usersFromApi))
                 }
             } catch (e: TimeoutCancellationException) {
-                users.postValue(UiState.Error("TimeoutCancellationException"))
+                uiState.postValue(UiState.Error("TimeoutCancellationException"))
             } catch (e: Exception) {
-                users.postValue(UiState.Error("Something Went Wrong"))
+                uiState.postValue(UiState.Error("Something Went Wrong"))
             }
         }
     }
 
-    fun getUsers(): LiveData<UiState<List<ApiUser>>> {
-        return users
+    fun getUiState(): LiveData<UiState<List<ApiUser>>> {
+        return uiState
     }
 
 }

@@ -15,7 +15,7 @@ class SeriesNetworkCallsViewModel(
     private val dbHelper: DatabaseHelper
 ) : ViewModel() {
 
-    private val users = MutableLiveData<UiState<List<ApiUser>>>()
+    private val uiState = MutableLiveData<UiState<List<ApiUser>>>()
 
     init {
         fetchUsers()
@@ -23,22 +23,22 @@ class SeriesNetworkCallsViewModel(
 
     private fun fetchUsers() {
         viewModelScope.launch {
-            users.postValue(UiState.Loading)
+            uiState.postValue(UiState.Loading)
             try {
                 val usersFromApi = apiHelper.getUsers()
                 val moreUsersFromApi = apiHelper.getMoreUsers()
                 val allUsersFromApi = mutableListOf<ApiUser>()
                 allUsersFromApi.addAll(usersFromApi)
                 allUsersFromApi.addAll(moreUsersFromApi)
-                users.postValue(UiState.Success(allUsersFromApi))
+                uiState.postValue(UiState.Success(allUsersFromApi))
             } catch (e: Exception) {
-                users.postValue(UiState.Error("Something Went Wrong"))
+                uiState.postValue(UiState.Error("Something Went Wrong"))
             }
         }
     }
 
-    fun getUsers(): LiveData<UiState<List<ApiUser>>> {
-        return users
+    fun getUiState(): LiveData<UiState<List<ApiUser>>> {
+        return uiState
     }
 
 }

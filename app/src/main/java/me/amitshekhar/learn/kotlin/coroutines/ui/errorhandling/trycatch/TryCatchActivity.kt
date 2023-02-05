@@ -47,7 +47,7 @@ class TryCatchActivity : AppCompatActivity() {
     }
 
     private fun setupObserver() {
-        viewModel.getUsers().observe(this) {
+        viewModel.getUiState().observe(this) {
             when (it) {
                 is UiState.Success -> {
                     progressBar.visibility = View.GONE

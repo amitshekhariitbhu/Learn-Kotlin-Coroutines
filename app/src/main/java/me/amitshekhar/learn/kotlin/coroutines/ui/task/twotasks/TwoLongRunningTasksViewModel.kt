@@ -13,26 +13,26 @@ class TwoLongRunningTasksViewModel(
     private val apiHelper: ApiHelper, private val dbHelper: DatabaseHelper
 ) : ViewModel() {
 
-    private val status = MutableLiveData<UiState<String>>()
+    private val uiState = MutableLiveData<UiState<String>>()
 
     fun startLongRunningTask() {
         viewModelScope.launch {
-            status.postValue(UiState.Loading)
+            uiState.postValue(UiState.Loading)
             try {
                 // do long running tasks
                 val resultOneDeferred = async { doLongRunningTaskOne() }
                 val resultTwoDeferred = async { doLongRunningTaskTwo() }
                 val combinedResult = resultOneDeferred.await() + resultTwoDeferred.await()
 
-                status.postValue(UiState.Success("Task Completed : $combinedResult"))
+                uiState.postValue(UiState.Success("Task Completed : $combinedResult"))
             } catch (e: Exception) {
-                status.postValue(UiState.Error("Something Went Wrong"))
+                uiState.postValue(UiState.Error("Something Went Wrong"))
             }
         }
     }
 
-    fun getStatus(): LiveData<UiState<String>> {
-        return status
+    fun getUiState(): LiveData<UiState<String>> {
+        return uiState
     }
 
     private suspend fun doLongRunningTaskOne(): Int {

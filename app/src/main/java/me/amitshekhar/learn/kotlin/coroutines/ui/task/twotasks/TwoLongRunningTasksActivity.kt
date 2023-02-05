@@ -27,7 +27,7 @@ class TwoLongRunningTasksActivity : AppCompatActivity() {
     }
 
     private fun setupLongRunningTask() {
-        viewModel.getStatus().observe(this) {
+        viewModel.getUiState().observe(this) {
             when (it) {
                 is UiState.Success -> {
                     progressBar.visibility = View.GONE
