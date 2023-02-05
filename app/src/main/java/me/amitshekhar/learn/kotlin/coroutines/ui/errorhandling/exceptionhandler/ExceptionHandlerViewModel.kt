@@ -28,9 +28,8 @@ class ExceptionHandlerViewModel(
     private fun fetchUsers() {
         viewModelScope.launch(exceptionHandler) {
             users.postValue(Resource.loading())
-            val usersFromApi = apiHelper.getUsers()
+            val usersFromApi = apiHelper.getUsersWithError()
             users.postValue(Resource.success(usersFromApi))
-            throw Exception("Exception Occurs")
         }
     }
 
