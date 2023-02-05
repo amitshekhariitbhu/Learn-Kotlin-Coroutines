@@ -10,28 +10,28 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import me.amitshekhar.learn.kotlin.coroutines.data.api.ApiHelper
 import me.amitshekhar.learn.kotlin.coroutines.data.local.DatabaseHelper
-import me.amitshekhar.learn.kotlin.coroutines.utils.Resource
+import me.amitshekhar.learn.kotlin.coroutines.utils.UiState
 
 class LongRunningTaskViewModel(
     private val apiHelper: ApiHelper, private val dbHelper: DatabaseHelper
 ) : ViewModel() {
 
-    private val status = MutableLiveData<Resource<String>>()
+    private val status = MutableLiveData<UiState<String>>()
 
     fun startLongRunningTask() {
         viewModelScope.launch {
-            status.postValue(Resource.loading())
+            status.postValue(UiState.Loading)
             try {
                 // do a long running task
                 doLongRunningTask()
-                status.postValue(Resource.success("Task Completed"))
+                status.postValue(UiState.Success("Task Completed"))
             } catch (e: Exception) {
-                status.postValue(Resource.error("Something Went Wrong"))
+                status.postValue(UiState.Error("Something Went Wrong"))
             }
         }
     }
 
-    fun getStatus(): LiveData<Resource<String>> {
+    fun getStatus(): LiveData<UiState<String>> {
         return status
     }
 

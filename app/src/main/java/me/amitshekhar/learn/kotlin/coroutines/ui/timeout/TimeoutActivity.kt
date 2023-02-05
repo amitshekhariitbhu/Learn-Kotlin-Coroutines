@@ -15,7 +15,7 @@ import me.amitshekhar.learn.kotlin.coroutines.data.local.DatabaseBuilder
 import me.amitshekhar.learn.kotlin.coroutines.data.local.DatabaseHelperImpl
 import me.amitshekhar.learn.kotlin.coroutines.data.model.ApiUser
 import me.amitshekhar.learn.kotlin.coroutines.ui.base.ApiUserAdapter
-import me.amitshekhar.learn.kotlin.coroutines.utils.Status
+import me.amitshekhar.learn.kotlin.coroutines.utils.UiState
 import me.amitshekhar.learn.kotlin.coroutines.utils.ViewModelFactory
 
 class TimeoutActivity : AppCompatActivity() {
@@ -33,10 +33,9 @@ class TimeoutActivity : AppCompatActivity() {
 
     private fun setupUI() {
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter =
-            ApiUserAdapter(
-                arrayListOf()
-            )
+        adapter = ApiUserAdapter(
+            arrayListOf()
+        )
         recyclerView.addItemDecoration(
             DividerItemDecoration(
                 recyclerView.context,
@@ -48,17 +47,17 @@ class TimeoutActivity : AppCompatActivity() {
 
     private fun setupObserver() {
         viewModel.getUsers().observe(this) {
-            when (it.status) {
-                Status.SUCCESS -> {
+            when (it) {
+                is UiState.Success -> {
                     progressBar.visibility = View.GONE
-                    it.data?.let { users -> renderList(users) }
+                    renderList(it.data)
                     recyclerView.visibility = View.VISIBLE
                 }
-                Status.LOADING -> {
+                is UiState.Loading -> {
                     progressBar.visibility = View.VISIBLE
                     recyclerView.visibility = View.GONE
                 }
-                Status.ERROR -> {
+                is UiState.Error -> {
                     //Handle Error
                     progressBar.visibility = View.GONE
                     Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
@@ -74,8 +73,7 @@ class TimeoutActivity : AppCompatActivity() {
 
     private fun setupViewModel() {
         viewModel = ViewModelProvider(
-            this,
-            ViewModelFactory(
+            this, ViewModelFactory(
                 ApiHelperImpl(RetrofitBuilder.apiService),
                 DatabaseHelperImpl(DatabaseBuilder.getInstance(applicationContext))
             )

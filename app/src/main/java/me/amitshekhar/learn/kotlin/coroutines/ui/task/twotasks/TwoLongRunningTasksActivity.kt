@@ -12,7 +12,7 @@ import me.amitshekhar.learn.kotlin.coroutines.data.api.ApiHelperImpl
 import me.amitshekhar.learn.kotlin.coroutines.data.api.RetrofitBuilder
 import me.amitshekhar.learn.kotlin.coroutines.data.local.DatabaseBuilder
 import me.amitshekhar.learn.kotlin.coroutines.data.local.DatabaseHelperImpl
-import me.amitshekhar.learn.kotlin.coroutines.utils.Status
+import me.amitshekhar.learn.kotlin.coroutines.utils.UiState
 import me.amitshekhar.learn.kotlin.coroutines.utils.ViewModelFactory
 
 class TwoLongRunningTasksActivity : AppCompatActivity() {
@@ -28,17 +28,17 @@ class TwoLongRunningTasksActivity : AppCompatActivity() {
 
     private fun setupLongRunningTask() {
         viewModel.getStatus().observe(this) {
-            when (it.status) {
-                Status.SUCCESS -> {
+            when (it) {
+                is UiState.Success -> {
                     progressBar.visibility = View.GONE
                     textView.text = it.data
                     textView.visibility = View.VISIBLE
                 }
-                Status.LOADING -> {
+                is UiState.Loading -> {
                     progressBar.visibility = View.VISIBLE
                     textView.visibility = View.GONE
                 }
-                Status.ERROR -> {
+                is UiState.Error -> {
                     //Handle Error
                     progressBar.visibility = View.GONE
                     Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()

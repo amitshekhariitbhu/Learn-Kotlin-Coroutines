@@ -9,16 +9,16 @@ import kotlinx.coroutines.launch
 import me.amitshekhar.learn.kotlin.coroutines.data.api.ApiHelper
 import me.amitshekhar.learn.kotlin.coroutines.data.local.DatabaseHelper
 import me.amitshekhar.learn.kotlin.coroutines.data.model.ApiUser
-import me.amitshekhar.learn.kotlin.coroutines.utils.Resource
+import me.amitshekhar.learn.kotlin.coroutines.utils.UiState
 
 class ExceptionHandlerViewModel(
     private val apiHelper: ApiHelper, private val dbHelper: DatabaseHelper
 ) : ViewModel() {
 
-    private val users = MutableLiveData<Resource<List<ApiUser>>>()
+    private val users = MutableLiveData<UiState<List<ApiUser>>>()
 
     private val exceptionHandler = CoroutineExceptionHandler { _, e ->
-        users.postValue(Resource.error("exception handler: $e"))
+        users.postValue(UiState.Error("exception handler: $e"))
     }
 
     init {
@@ -27,13 +27,13 @@ class ExceptionHandlerViewModel(
 
     private fun fetchUsers() {
         viewModelScope.launch(exceptionHandler) {
-            users.postValue(Resource.loading())
+            users.postValue(UiState.Loading)
             val usersFromApi = apiHelper.getUsersWithError()
-            users.postValue(Resource.success(usersFromApi))
+            users.postValue(UiState.Success(usersFromApi))
         }
     }
 
-    fun getUsers(): LiveData<Resource<List<ApiUser>>> {
+    fun getUsers(): LiveData<UiState<List<ApiUser>>> {
         return users
     }
 

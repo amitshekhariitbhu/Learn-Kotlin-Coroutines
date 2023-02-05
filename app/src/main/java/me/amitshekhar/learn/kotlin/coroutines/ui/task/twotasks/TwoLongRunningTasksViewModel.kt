@@ -7,31 +7,31 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.*
 import me.amitshekhar.learn.kotlin.coroutines.data.api.ApiHelper
 import me.amitshekhar.learn.kotlin.coroutines.data.local.DatabaseHelper
-import me.amitshekhar.learn.kotlin.coroutines.utils.Resource
+import me.amitshekhar.learn.kotlin.coroutines.utils.UiState
 
 class TwoLongRunningTasksViewModel(
     private val apiHelper: ApiHelper, private val dbHelper: DatabaseHelper
 ) : ViewModel() {
 
-    private val status = MutableLiveData<Resource<String>>()
+    private val status = MutableLiveData<UiState<String>>()
 
     fun startLongRunningTask() {
         viewModelScope.launch {
-            status.postValue(Resource.loading())
+            status.postValue(UiState.Loading)
             try {
                 // do long running tasks
                 val resultOneDeferred = async { doLongRunningTaskOne() }
                 val resultTwoDeferred = async { doLongRunningTaskTwo() }
                 val combinedResult = resultOneDeferred.await() + resultTwoDeferred.await()
 
-                status.postValue(Resource.success("Task Completed : $combinedResult"))
+                status.postValue(UiState.Success("Task Completed : $combinedResult"))
             } catch (e: Exception) {
-                status.postValue(Resource.error("Something Went Wrong"))
+                status.postValue(UiState.Error("Something Went Wrong"))
             }
         }
     }
 
-    fun getStatus(): LiveData<Resource<String>> {
+    fun getStatus(): LiveData<UiState<String>> {
         return status
     }
 

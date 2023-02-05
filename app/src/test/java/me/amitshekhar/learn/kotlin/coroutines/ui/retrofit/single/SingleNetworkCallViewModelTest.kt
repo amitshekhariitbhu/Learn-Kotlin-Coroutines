@@ -6,7 +6,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import me.amitshekhar.learn.kotlin.coroutines.data.api.ApiHelper
 import me.amitshekhar.learn.kotlin.coroutines.data.local.DatabaseHelper
 import me.amitshekhar.learn.kotlin.coroutines.data.model.ApiUser
-import me.amitshekhar.learn.kotlin.coroutines.utils.Resource
+import me.amitshekhar.learn.kotlin.coroutines.utils.UiState
 import me.amitshekhar.learn.kotlin.coroutines.utils.TestCoroutineRule
 import org.junit.After
 import org.junit.Before
@@ -35,7 +35,7 @@ class SingleNetworkCallViewModelTest {
     private lateinit var databaseHelper: DatabaseHelper
 
     @Mock
-    private lateinit var apiUsersObserver: Observer<Resource<List<ApiUser>>>
+    private lateinit var apiUsersObserver: Observer<UiState<List<ApiUser>>>
 
     @Before
     fun setUp() {
@@ -51,7 +51,7 @@ class SingleNetworkCallViewModelTest {
             val viewModel = SingleNetworkCallViewModel(apiHelper, databaseHelper)
             viewModel.getUsers().observeForever(apiUsersObserver)
             verify(apiHelper).getUsers()
-            verify(apiUsersObserver).onChanged(Resource.success(emptyList()))
+            verify(apiUsersObserver).onChanged(UiState.Success(emptyList()))
             viewModel.getUsers().removeObserver(apiUsersObserver)
         }
     }
@@ -67,7 +67,7 @@ class SingleNetworkCallViewModelTest {
             viewModel.getUsers().observeForever(apiUsersObserver)
             verify(apiHelper).getUsers()
             verify(apiUsersObserver).onChanged(
-                Resource.error(RuntimeException(errorMessage).toString())
+                UiState.Error(RuntimeException(errorMessage).toString())
             )
             viewModel.getUsers().removeObserver(apiUsersObserver)
         }

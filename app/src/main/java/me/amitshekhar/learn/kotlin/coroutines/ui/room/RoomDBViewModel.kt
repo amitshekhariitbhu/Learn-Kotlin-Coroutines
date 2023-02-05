@@ -8,12 +8,12 @@ import kotlinx.coroutines.launch
 import me.amitshekhar.learn.kotlin.coroutines.data.api.ApiHelper
 import me.amitshekhar.learn.kotlin.coroutines.data.local.DatabaseHelper
 import me.amitshekhar.learn.kotlin.coroutines.data.local.entity.User
-import me.amitshekhar.learn.kotlin.coroutines.utils.Resource
+import me.amitshekhar.learn.kotlin.coroutines.utils.UiState
 
 class RoomDBViewModel(private val apiHelper: ApiHelper, private val dbHelper: DatabaseHelper) :
     ViewModel() {
 
-    private val users = MutableLiveData<Resource<List<User>>>()
+    private val users = MutableLiveData<UiState<List<User>>>()
 
     init {
         fetchUsers()
@@ -21,7 +21,7 @@ class RoomDBViewModel(private val apiHelper: ApiHelper, private val dbHelper: Da
 
     private fun fetchUsers() {
         viewModelScope.launch {
-            users.postValue(Resource.loading())
+            users.postValue(UiState.Loading)
             try {
                 val usersFromDb = dbHelper.getUsers()
                 if (usersFromDb.isEmpty()) {
@@ -40,20 +40,20 @@ class RoomDBViewModel(private val apiHelper: ApiHelper, private val dbHelper: Da
 
                     dbHelper.insertAll(usersToInsertInDB)
 
-                    users.postValue(Resource.success(usersToInsertInDB))
+                    users.postValue(UiState.Success(usersToInsertInDB))
 
                 } else {
-                    users.postValue(Resource.success(usersFromDb))
+                    users.postValue(UiState.Success(usersFromDb))
                 }
 
 
             } catch (e: Exception) {
-                users.postValue(Resource.error("Something Went Wrong"))
+                users.postValue(UiState.Error("Something Went Wrong"))
             }
         }
     }
 
-    fun getUsers(): LiveData<Resource<List<User>>> {
+    fun getUsers(): LiveData<UiState<List<User>>> {
         return users
     }
 

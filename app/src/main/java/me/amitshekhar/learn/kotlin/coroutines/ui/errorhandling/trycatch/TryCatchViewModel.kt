@@ -8,13 +8,13 @@ import kotlinx.coroutines.launch
 import me.amitshekhar.learn.kotlin.coroutines.data.api.ApiHelper
 import me.amitshekhar.learn.kotlin.coroutines.data.local.DatabaseHelper
 import me.amitshekhar.learn.kotlin.coroutines.data.model.ApiUser
-import me.amitshekhar.learn.kotlin.coroutines.utils.Resource
+import me.amitshekhar.learn.kotlin.coroutines.utils.UiState
 
 class TryCatchViewModel(
     private val apiHelper: ApiHelper, private val dbHelper: DatabaseHelper
 ) : ViewModel() {
 
-    private val users = MutableLiveData<Resource<List<ApiUser>>>()
+    private val users = MutableLiveData<UiState<List<ApiUser>>>()
 
     init {
         fetchUsers()
@@ -22,17 +22,17 @@ class TryCatchViewModel(
 
     private fun fetchUsers() {
         viewModelScope.launch {
-            users.postValue(Resource.loading())
+            users.postValue(UiState.Loading)
             try {
                 val usersFromApi = apiHelper.getUsersWithError()
-                users.postValue(Resource.success(usersFromApi))
+                users.postValue(UiState.Success(usersFromApi))
             } catch (e: Exception) {
-                users.postValue(Resource.error("Something Went Wrong"))
+                users.postValue(UiState.Error("Something Went Wrong"))
             }
         }
     }
 
-    fun getUsers(): LiveData<Resource<List<ApiUser>>> {
+    fun getUsers(): LiveData<UiState<List<ApiUser>>> {
         return users
     }
 

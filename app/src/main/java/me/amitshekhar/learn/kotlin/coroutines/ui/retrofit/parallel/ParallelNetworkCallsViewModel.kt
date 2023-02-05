@@ -10,14 +10,14 @@ import kotlinx.coroutines.launch
 import me.amitshekhar.learn.kotlin.coroutines.data.api.ApiHelper
 import me.amitshekhar.learn.kotlin.coroutines.data.local.DatabaseHelper
 import me.amitshekhar.learn.kotlin.coroutines.data.model.ApiUser
-import me.amitshekhar.learn.kotlin.coroutines.utils.Resource
+import me.amitshekhar.learn.kotlin.coroutines.utils.UiState
 
 class ParallelNetworkCallsViewModel(
     private val apiHelper: ApiHelper,
     private val dbHelper: DatabaseHelper
 ) : ViewModel() {
 
-    private val users = MutableLiveData<Resource<List<ApiUser>>>()
+    private val users = MutableLiveData<UiState<List<ApiUser>>>()
 
     init {
         fetchUsers()
@@ -25,7 +25,7 @@ class ParallelNetworkCallsViewModel(
 
     private fun fetchUsers() {
         viewModelScope.launch {
-            users.postValue(Resource.loading())
+            users.postValue(UiState.Loading)
             try {
                 // coroutineScope is needed, else in case of any network error, it will crash
                 coroutineScope {
@@ -39,15 +39,15 @@ class ParallelNetworkCallsViewModel(
                     allUsersFromApi.addAll(usersFromApi)
                     allUsersFromApi.addAll(moreUsersFromApi)
 
-                    users.postValue(Resource.success(allUsersFromApi))
+                    users.postValue(UiState.Success(allUsersFromApi))
                 }
             } catch (e: Exception) {
-                users.postValue(Resource.error("Something Went Wrong"))
+                users.postValue(UiState.Error("Something Went Wrong"))
             }
         }
     }
 
-    fun getUsers(): LiveData<Resource<List<ApiUser>>> {
+    fun getUsers(): LiveData<UiState<List<ApiUser>>> {
         return users
     }
 
