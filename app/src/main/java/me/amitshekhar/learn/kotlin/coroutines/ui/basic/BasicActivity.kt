@@ -98,6 +98,14 @@ class BasicActivity : AppCompatActivity() {
         myActivityScopeWithHandler()
     }
 
+    fun exceptionInLaunchBlock(view: View) {
+        exceptionInLaunchBlock()
+    }
+
+    fun exceptionInAsyncBlock(view: View) {
+        exceptionInAsyncBlock()
+    }
+
     private fun testCoroutine() {
         Log.d(TAG, "Function Start")
 
@@ -365,7 +373,7 @@ class BasicActivity : AppCompatActivity() {
         lifecycleScope.launch(exceptionHandler) {
             Log.d(TAG, "Before Task")
             doLongRunningTask()
-            throw Exception("Some Error")
+            throw Exception("Some Exception")
             Log.d(TAG, "After Task")
         }
         Log.d(TAG, "Function End")
@@ -386,7 +394,7 @@ class BasicActivity : AppCompatActivity() {
         myActivityScope.launch(exceptionHandler) {
             Log.d(TAG, "Before Task")
             doLongRunningTask()
-            throw Exception("Some Error")
+            throw Exception("Some Exception")
             Log.d(TAG, "After Task")
         }
         Log.d(TAG, "Function End")
@@ -400,6 +408,22 @@ class BasicActivity : AppCompatActivity() {
             Log.d(TAG, "After Task")
         }
         Log.d(TAG, "Function End")
+    }
+
+    private fun exceptionInLaunchBlock() {
+        lifecycleScope.launch {
+            doSomethingAndThrowException()
+        }
+    }
+
+    private fun exceptionInAsyncBlock() {
+        lifecycleScope.async {
+            doSomethingAndThrowException()
+        }
+    }
+
+    private fun doSomethingAndThrowException() {
+        throw Exception("Some Exception")
     }
 
     private fun learnLaunch() {
