@@ -175,5 +175,13 @@
             android:textAllCaps="false"
             android:textColor="@android:color/white" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="exceptionInAsyncBlockWithAwait"
+            android:text="exceptionInAsyncBlockWithAwait"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+
     </LinearLayout>
 </ScrollView>

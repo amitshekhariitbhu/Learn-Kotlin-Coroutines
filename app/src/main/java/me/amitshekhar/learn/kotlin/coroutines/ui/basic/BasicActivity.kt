@@ -5,7 +5,17 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import me.amitshekhar.learn.kotlin.coroutines.R
 
 class BasicActivity : AppCompatActivity() {
@@ -104,6 +114,10 @@ class BasicActivity : AppCompatActivity() {
 
     fun exceptionInAsyncBlock(view: View) {
         exceptionInAsyncBlock()
+    }
+
+    fun exceptionInAsyncBlockWithAwait(view: View) {
+        exceptionInAsyncBlockWithAwait()
     }
 
     private fun testCoroutine() {
@@ -419,6 +433,20 @@ class BasicActivity : AppCompatActivity() {
     private fun exceptionInAsyncBlock() {
         lifecycleScope.async {
             doSomethingAndThrowException()
+        }
+    }
+
+    private fun exceptionInAsyncBlockWithAwait() {
+        lifecycleScope.launch {
+            val deferred = lifecycleScope.async(Dispatchers.Default) {
+                doSomethingAndThrowException()
+                return@async 10
+            }
+            try {
+                val result = deferred.await()
+            } catch (e: Exception) {
+                Log.d(TAG, "exception handler: $e")
+            }
         }
     }
 
