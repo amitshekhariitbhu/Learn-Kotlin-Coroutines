@@ -477,30 +477,30 @@ class BasicActivity : AppCompatActivity() {
 
     private fun testSuspending() {
         lifecycleScope.launch(dispatcher) {
-            Log.d(TAG, "testSuspending Before Delay 1")
+            Log.d(TAG, "testSuspending Before Task 1")
             timeTakingTask()
-            Log.d(TAG, "testSuspending After Delay 1")
+            Log.d(TAG, "testSuspending After Task 1")
         }
         lifecycleScope.launch(dispatcher) {
-            Log.d(TAG, "testSuspending Before Delay 2")
+            Log.d(TAG, "testSuspending Before Task 2")
             timeTakingTask()
-            Log.d(TAG, "testSuspending After Delay 2")
+            Log.d(TAG, "testSuspending After Task 2")
         }
     }
 
     private fun testBlocking() {
         lifecycleScope.launch(dispatcher) {
             runBlocking {
-                Log.d(TAG, "testBlocking Before Delay 1")
+                Log.d(TAG, "testBlocking Before Task 1")
                 timeTakingTask()
-                Log.d(TAG, "testBlocking After Delay 1")
+                Log.d(TAG, "testBlocking After Task 1")
             }
         }
         lifecycleScope.launch(dispatcher) {
             runBlocking {
-                Log.d(TAG, "testBlocking Before Delay 2")
+                Log.d(TAG, "testBlocking Before Task 2")
                 timeTakingTask()
-                Log.d(TAG, "testBlocking After Delay 2")
+                Log.d(TAG, "testBlocking After Task 2")
             }
         }
     }
