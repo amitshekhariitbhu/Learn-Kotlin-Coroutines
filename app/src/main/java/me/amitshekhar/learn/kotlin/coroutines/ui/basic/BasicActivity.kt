@@ -10,13 +10,16 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.async
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import me.amitshekhar.learn.kotlin.coroutines.R
+import java.util.concurrent.Executors
 
 class BasicActivity : AppCompatActivity() {
 
@@ -118,6 +121,14 @@ class BasicActivity : AppCompatActivity() {
 
     fun exceptionInAsyncBlockWithAwait(view: View) {
         exceptionInAsyncBlockWithAwait()
+    }
+
+    fun testSuspending(view: View) {
+        testSuspending()
+    }
+
+    fun testBlocking(view: View) {
+        testBlocking()
     }
 
     private fun testCoroutine() {
@@ -452,6 +463,46 @@ class BasicActivity : AppCompatActivity() {
 
     private fun doSomethingAndThrowException() {
         throw Exception("Some Exception")
+    }
+
+    private suspend fun timeTakingTask() {
+        withContext(Dispatchers.IO) {
+            // your code for doing a time taking task
+            // Added delay to simulate
+            Thread.sleep(5000)
+        }
+    }
+
+    private val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
+
+    private fun testSuspending() {
+        lifecycleScope.launch(dispatcher) {
+            Log.d(TAG, "testSuspending Before Delay 1")
+            timeTakingTask()
+            Log.d(TAG, "testSuspending After Delay 1")
+        }
+        lifecycleScope.launch(dispatcher) {
+            Log.d(TAG, "testSuspending Before Delay 2")
+            timeTakingTask()
+            Log.d(TAG, "testSuspending After Delay 2")
+        }
+    }
+
+    private fun testBlocking() {
+        lifecycleScope.launch(dispatcher) {
+            runBlocking {
+                Log.d(TAG, "testBlocking Before Delay 1")
+                timeTakingTask()
+                Log.d(TAG, "testBlocking After Delay 1")
+            }
+        }
+        lifecycleScope.launch(dispatcher) {
+            runBlocking {
+                Log.d(TAG, "testBlocking Before Delay 2")
+                timeTakingTask()
+                Log.d(TAG, "testBlocking After Delay 2")
+            }
+        }
     }
 
     private fun learnLaunch() {

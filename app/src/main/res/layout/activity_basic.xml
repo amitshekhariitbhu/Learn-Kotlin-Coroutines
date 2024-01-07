@@ -183,5 +183,21 @@
             android:textAllCaps="false"
             android:textColor="@android:color/white" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="testSuspending"
+            android:text="testSuspending"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="testBlocking"
+            android:text="testBlocking"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+
     </LinearLayout>
 </ScrollView>
