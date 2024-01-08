@@ -21,7 +21,7 @@ You can connect with me on:
 ## Steps to learn Kotlin Coroutines from this project
 
 * Learn all the concepts of Kotlin Coroutines from this blog: **[Mastering Kotlin Coroutines](https://amitshekhar.me/blog/kotlin-coroutines)**
-* Learn about the Suspending vs Blocking in Kotlin Coroutines **[Suspending vs Blocking in Kotlin Coroutines](https://www.youtube.com/watch?v=V2lL_aJp17I)**
+* Learn about the Suspending vs Blocking in Kotlin Coroutines: **[Suspending vs Blocking in Kotlin Coroutines](https://www.youtube.com/watch?v=V2lL_aJp17I)**
 * Learn about the Launch vs Async in Kotlin Coroutines from here: **[Launch vs Async in Kotlin Coroutines](https://amitshekhar.me/blog/launch-vs-async-in-kotlin-coroutines)**
 * Learn about the Dispatchers from here: **[Dispatchers in Kotlin Coroutines](https://amitshekhar.me/blog/dispatchers-in-kotlin-coroutines)**
 * Learn about the `coroutineScope` vs `supervisorScope` from here: **[coroutinescope vs supervisorscope](https://amitshekhar.me/blog/coroutinescope-vs-supervisorscope)**
