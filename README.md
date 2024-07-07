@@ -133,7 +133,6 @@ You can connect with me on:
 
 Just make pull request. You are in!
 
-
 Thanks
 
 **Amit Shekhar**\
@@ -146,4 +145,4 @@ You can connect with me on:
 - [GitHub](https://github.com/amitshekhariitbhu)
 - [Facebook](https://www.facebook.com/amit.shekhar.iitbhu)
 
-[**Read all of my blogs here.**](https://outcomeschool.com/blog)
+[**Read all of our blogs here.**](https://outcomeschool.com/blog)
