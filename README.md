@@ -9,7 +9,7 @@
 
 ## About me
 
-Hi, I am [**Amit Shekhar**](https://amitshekhar.me), I have mentored many developers, and their efforts landed them high-paying tech jobs, helped many tech companies in solving their unique problems, and created many open-source libraries being used by top companies. I am passionate about sharing knowledge through open-source, blogs, and videos.
+Hi, I am Amit Shekhar, Co-Founder @ [Outcome School](https://outcomeschool.com) • IIT 2010-14 • I have taught and mentored many developers, and their efforts landed them high-paying tech jobs, helped many tech companies in solving their unique problems, and created many open-source libraries being used by top companies. I am passionate about sharing knowledge through open-source, blogs, and videos.
 
 You can connect with me on:
 
@@ -20,18 +20,18 @@ You can connect with me on:
 
 ## Steps to learn Kotlin Coroutines from this project
 
-* Learn all the concepts of Kotlin Coroutines from this blog: **[Mastering Kotlin Coroutines](https://amitshekhar.me/blog/kotlin-coroutines)**
+* Learn all the concepts of Kotlin Coroutines from this blog: **[Mastering Kotlin Coroutines](https://outcomeschool.com/blog/kotlin-coroutines)**
 * Learn about the Suspending vs Blocking in Kotlin Coroutines: **[Suspending vs Blocking in Kotlin Coroutines](https://www.youtube.com/watch?v=V2lL_aJp17I)**
-* Learn about the Launch vs Async in Kotlin Coroutines from here: **[Launch vs Async in Kotlin Coroutines](https://amitshekhar.me/blog/launch-vs-async-in-kotlin-coroutines)**
-* Learn about the Dispatchers from here: **[Dispatchers in Kotlin Coroutines](https://amitshekhar.me/blog/dispatchers-in-kotlin-coroutines)**
-* Learn about the `coroutineScope` vs `supervisorScope` from here: **[coroutinescope vs supervisorscope](https://amitshekhar.me/blog/coroutinescope-vs-supervisorscope)**
-* Blog [suspend function in Kotlin Coroutines](https://amitshekhar.me/blog/suspend-function-in-kotlin-coroutines)
-* Blog [Kotlin withContext vs Async-await](https://amitshekhar.me/blog/kotlin-withcontext-vs-async-await)
-* Blog [Callback to Coroutines in Kotlin](https://amitshekhar.me/blog/callback-to-coroutines-in-kotlin)  
-* Blog [Retrofit with Kotlin Coroutines](https://amitshekhar.me/blog/retrofit-with-kotlin-coroutines)
-* Blog [Parallel Multiple Network Calls Using Kotlin Coroutines](https://amitshekhar.me/blog/parallel-multiple-network-calls-using-kotlin-coroutines)
-* Blog [Room Database with Kotlin Coroutines](https://amitshekhar.me/blog/room-database-with-kotlin-coroutines)
-* Blog [Unit Testing ViewModel with Kotlin Coroutines and LiveData](https://amitshekhar.me/blog/unit-testing-viewmodel-with-kotlin-coroutines-and-livedata)
+* Learn about the Launch vs Async in Kotlin Coroutines from here: **[Launch vs Async in Kotlin Coroutines](https://outcomeschool.com/blog/launch-vs-async-in-kotlin-coroutines)**
+* Learn about the Dispatchers from here: **[Dispatchers in Kotlin Coroutines](https://outcomeschool.com/blog/dispatchers-in-kotlin-coroutines)**
+* Learn about the `coroutineScope` vs `supervisorScope` from here: **[coroutinescope vs supervisorscope](https://outcomeschool.com/blog/coroutinescope-vs-supervisorscope)**
+* Blog [suspend function in Kotlin Coroutines](https://outcomeschool.com/blog/suspend-function-in-kotlin-coroutines)
+* Blog [Kotlin withContext vs Async-await](https://outcomeschool.com/blog/kotlin-withcontext-vs-async-await)
+* Blog [Callback to Coroutines in Kotlin](https://outcomeschool.com/blog/callback-to-coroutines-in-kotlin)  
+* Blog [Retrofit with Kotlin Coroutines](https://outcomeschool.com/blog/retrofit-with-kotlin-coroutines)
+* Blog [Parallel Multiple Network Calls Using Kotlin Coroutines](https://outcomeschool.com/blog/parallel-multiple-network-calls-using-kotlin-coroutines)
+* Blog [Room Database with Kotlin Coroutines](https://outcomeschool.com/blog/room-database-with-kotlin-coroutines)
+* Blog [Unit Testing ViewModel with Kotlin Coroutines and LiveData](https://outcomeschool.com/blog/unit-testing-viewmodel-with-kotlin-coroutines-and-livedata)
 * Then, just clone, build, run the project and start learning Kotlin Coroutines by examples.
 
 ## You will learn the following from this Learn Kotlin Coroutines project:
@@ -45,7 +45,7 @@ You can connect with me on:
 * Canceling background task using Kotlin Coroutines.
 * Exception handling in Kotlin Coroutines.
 * Using Kotlin Coroutines with Retrofit.
-  Blog: [Retrofit with Kotlin Coroutines](https://amitshekhar.me/blog/retrofit-with-kotlin-coroutines)
+  Blog: [Retrofit with Kotlin Coroutines](https://outcomeschool.com/blog/retrofit-with-kotlin-coroutines)
 * Using Kotlin Coroutines with Room Database.
 * Using Kotlin Coroutines with various 3rd party libraries.
 * Adding timeout to a task using Kotlin Coroutines.
@@ -55,7 +55,7 @@ You can connect with me on:
 
 * **Single Network Call:** Learn how to make a network call using Kotlin Coroutines. This is a very
   simple use-case in Android App Development.
-  Blog: [Retrofit with Kotlin Coroutines](https://amitshekhar.me/blog/retrofit-with-kotlin-coroutines)
+  Blog: [Retrofit with Kotlin Coroutines](https://outcomeschool.com/blog/retrofit-with-kotlin-coroutines)
     * [Activity Code](app/src/main/java/me/amitshekhar/learn/kotlin/coroutines/ui/retrofit/single/SingleNetworkCallActivity.kt)
     * [ViewModel Code](app/src/main/java/me/amitshekhar/learn/kotlin/coroutines/ui/retrofit/single/SingleNetworkCallViewModel.kt)
 
@@ -100,7 +100,7 @@ You can connect with me on:
     * [ViewModel Code](app/src/main/java/me/amitshekhar/learn/kotlin/coroutines/ui/errorhandling/exceptionhandler/ExceptionHandlerViewModel.kt)
 
 * **Ignore Error And Continue:** Learn how to
-  use [`supervisorScope`](https://amitshekhar.me/blog/coroutinescope-vs-supervisorscope) to ignore
+  use [`supervisorScope`](https://outcomeschool.com/blog/coroutinescope-vs-supervisorscope) to ignore
   error of a task and continue with other task. In other words, if more than two child jobs are
   running in parallel under a supervisor, one child job gets failed, we can continue with other.
     * [Activity Code](app/src/main/java/me/amitshekhar/learn/kotlin/coroutines/ui/errorhandling/supervisor/IgnoreErrorAndContinueActivity.kt)
@@ -114,7 +114,7 @@ You can connect with me on:
 ### License
 
 ```
-   Copyright (C) 2022 Amit Shekhar
+   Copyright (C) 2024 Amit Shekhar
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -136,7 +136,8 @@ Just make pull request. You are in!
 
 Thanks
 
-[**Amit Shekhar**](https://amitshekhar.me)
+**Amit Shekhar**\
+Co-Founder @ [Outcome School](https://outcomeschool.com)
 
 You can connect with me on:
 
@@ -145,4 +146,4 @@ You can connect with me on:
 - [GitHub](https://github.com/amitshekhariitbhu)
 - [Facebook](https://www.facebook.com/amit.shekhar.iitbhu)
 
-[**Read all of my blogs here.**](https://amitshekhar.me/blog)
+[**Read all of my blogs here.**](https://outcomeschool.com/blog)
