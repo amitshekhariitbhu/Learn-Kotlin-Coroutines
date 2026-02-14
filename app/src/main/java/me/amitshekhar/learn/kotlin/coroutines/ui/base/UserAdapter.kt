@@ -7,6 +7,11 @@ import com.bumptech.glide.Glide
 import me.amitshekhar.learn.kotlin.coroutines.data.local.entity.User
 import me.amitshekhar.learn.kotlin.coroutines.databinding.ItemLayoutBinding
 
+/**
+ * [UserAdapter] is same as [ApiUserAdapter] but it uses
+ * a database backed [User] entity
+ * instead of api backed [me.amitshekhar.learn.kotlin.coroutines.data.model.ApiUser] model class.
+ */
 class UserAdapter(
     private val users: ArrayList<User>
 ) : RecyclerView.Adapter<UserAdapter.DataViewHolder>() {

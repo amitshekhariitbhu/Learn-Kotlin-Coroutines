@@ -3,6 +3,7 @@ package me.amitshekhar.learn.kotlin.coroutines.ui.task.twotasks
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import me.amitshekhar.learn.kotlin.coroutines.data.api.ApiHelperImpl
@@ -20,6 +21,7 @@ class TwoLongRunningTasksActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         binding = ActivityLongRunningTaskBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupViewModel()

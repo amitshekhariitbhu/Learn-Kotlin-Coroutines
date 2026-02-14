@@ -4,9 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import me.amitshekhar.learn.kotlin.coroutines.data.local.entity.User
 import me.amitshekhar.learn.kotlin.coroutines.data.model.ApiUser
 import me.amitshekhar.learn.kotlin.coroutines.databinding.ItemLayoutBinding
 
+/**
+ * [ApiUserAdapter] is same as [UserAdapter] but it uses
+ * a api backed [ApiUser] model
+ * instead of db backed [User] entity.
+ */
 class ApiUserAdapter(
     private val users: ArrayList<ApiUser>
 ) : RecyclerView.Adapter<ApiUserAdapter.DataViewHolder>() {

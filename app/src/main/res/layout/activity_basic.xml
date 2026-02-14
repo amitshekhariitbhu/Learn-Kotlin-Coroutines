@@ -8,6 +8,7 @@
     android:paddingTop="16dp"
     android:paddingRight="16dp"
     android:paddingBottom="16dp"
+    android:fitsSystemWindows="true"
     tools:context=".ui.basic.BasicActivity">
 
     <LinearLayout

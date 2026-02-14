@@ -3,6 +3,7 @@ package me.amitshekhar.learn.kotlin.coroutines.ui.room
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -25,6 +26,7 @@ class RoomDBActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         binding = ActivityRecyclerViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupUI()
